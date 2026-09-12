@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — Документация</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>Полное руководство пользователя по настольному конвертеру файлов и загрузчику медиа — v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html" class="sel">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. Обзор</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong> — это настольное приложение для
+  <strong>конвертации файлов</strong> (видео, аудио, изображения, офисные документы и PDF) и
+  <strong>загрузки медиа</strong> с тысяч платформ, оформленное в виде
+  быстрого нативного окна. Оно создано на основе фреймворка Wails: пользовательский интерфейс
+  представляет собой обычную HTML/CSS/JS-страницу, а вся ресурсоёмкая работа (FFmpeg, yt-dlp,
+  LibreOffice, poppler) выполняется в бэкенде на Go. Приложение поддерживает <strong>21 язык</strong>
+  и работает на <strong>Windows</strong> и <strong>Linux</strong>.
+</p>
+
+<h2>2. Возможности</h2>
+<ul>
+  <li>Конвертация файлов <strong>видео</strong>, <strong>аудио</strong>, <strong>изображений</strong> и <strong>документов</strong> между форматами.</li>
+  <li><strong>Загрузка</strong> видео или MP3-музыки с платформ, поддерживаемых yt-dlp.</li>
+  <li><strong>Установка в один клик</strong> FFmpeg и yt-dlp; автоматическое обнаружение LibreOffice и poppler.</li>
+  <li><strong>21 язык</strong>: язык берётся автоматически из операционной системы и его можно переключить в любой момент; для арабского, урду и персидского используется макет справа налево.</li>
+  <li><strong>Живой список задач</strong> с индикаторами выполнения и пошаговыми сообщениями о статусе.</li>
+  <li>Без внешних библиотек интерфейса — быстрый тёмный интерфейс рабочего стола.</li>
+</ul>
+
+<h2>3. Поддерживаемые форматы</h2>
+<table>
+  <tr><th>Вид</th><th>Вход</th><th>Выход</th></tr>
+  <tr><td>Видео</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>Аудио</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>Изображение</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>Документ</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>Примечание:</strong> для конвертации документов (PDF ↔ DOCX, PDF → изображение/текст) требуется, чтобы в системе были установлены <strong>LibreOffice</strong> и/или <strong>poppler</strong>. Они обнаруживаются автоматически, но не поставляются вместе с приложением — см. <a href="#tools-tab">вкладку «Инструменты»</a>.</div>
+
+<h2>4. Требования</h2>
+<h3>Инструменты времени выполнения</h3>
+<table>
+  <tr><th>Инструмент</th><th>Используется для</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>Все конвертации видео/аудио/изображений; загрузка лучшего качества с объединением потоков</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>Загрузка видео/музыки с платформ</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>Конвертация DOCX ↔ PDF</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → изображение, PDF → текст</td></tr>
+</table>
+<p>FFmpeg и yt-dlp можно установить <strong>прямо из приложения</strong> в один клик. LibreOffice и poppler должны быть установлены пользователем (ссылки показаны на вкладке «Инструменты»).</p>
+
+<h2>5. Установка (Windows / Linux)</h2>
+<ol>
+  <li>Скачайте двоичный файл для своей платформы и запустите его (см. файлы релиза), <em>или</em> соберите приложение самостоятельно — см. <a href="#build-from-source">«Сборка из исходного кода»</a>.</li>
+  <li>При первом запуске приложение автоматически выбирает язык операционной системы. Если определить его не удаётся, используется английский язык.</li>
+  <li>Откройте вкладку <strong>«Инструменты»</strong>. Для инструментов, помеченных как отсутствующие, отображается кнопка <strong>«Установить»</strong>. Сначала установите <strong>FFmpeg</strong> и <strong>yt-dlp</strong>.</li>
+  <li>Можно приступать к конвертации и загрузке.</li>
+</ol>
+<div class="warn"><strong>Windows:</strong> поскольку обычная сборка не подписана, SmartScreen может предупредить о «неизвестном издателе». Выберите <em>Дополнительно → Всё равно выполнить</em>. Некоторые антивирусные программы и прокси могут блокировать загрузку двоичных файлов; добавьте исключение для приложения и его папки <code>bin</code>.</div>
+
+<h2>6. Выбор языка</h2>
+<ul>
+  <li>При запуске автоматически используется язык операционной системы (по умолчанию — английский).</li>
+  <li><strong>Селектор языка</strong> находится в правом верхнем углу окна. Выбор языка немедленно переводит весь интерфейс (включая выполняющиеся задачи).</li>
+  <li>Ваш ручной выбор запоминается и имеет приоритет при следующем запуске.</li>
+  <li>Для арабского, урду и персидского автоматически используется макет справа налево.</li>
+</ul>
+
+<h2 id="tools-tab">7. Вкладка «Инструменты»</h2>
+<table>
+  <tr><th>Инструмент</th><th>Установка из приложения</th><th>Примечания</th></tr>
+  <tr><td>FFmpeg</td><td>Да</td><td>Windows: сборка BtbN GPL; Linux: статическая сборка johnvansickle (≈120 МБ)</td></tr>
+  <tr><td>yt-dlp</td><td>Да</td><td>Загружается двоичный файл, соответствующий вашей платформе</td></tr>
+  <tr><td>LibreOffice</td><td>Нет</td><td>Установите с <a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a></td></tr>
+  <tr><td>poppler</td><td>Нет</td><td>Установите с <a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a></td></tr>
+</table>
+<p>Файлы хранятся в папке конфигурации пользователя в каталоге <code>SyntaxOrigin Multi Tools\bin</code> (Windows: <code>%APPDATA%</code>; Linux: <code>$XDG_CONFIG_HOME</code> или <code>~/.config</code>).</p>
+
+<h2>8. Руководство по конвертации</h2>
+<ol>
+  <li>Перейдите на вкладку <strong>«Конвертация»</strong>.</li>
+  <li>Выберите <strong>вид</strong> (Видео / Аудио / Изображение / Документ).</li>
+  <li>Нажмите <strong>«Выбрать файл»</strong> и выберите файл (поддерживаемые форматы фильтруются автоматически).</li>
+  <li>Выберите <strong>целевой формат</strong>. Для видео/аудио можно дополнительно задать <strong>битрейт</strong>; для видео также можно изменить <strong>ширину × высоту</strong>.</li>
+  <li>Выберите <strong>место сохранения</strong> (имя файла предлагается автоматически) и нажмите <strong>«Конвертировать»</strong>.</li>
+  <li>Задача появится в нижней части окна (<strong>«Задачи»</strong>) с индикатором выполнения в реальном времени.</li>
+</ol>
+
+<h2>9. Руководство по загрузке</h2>
+<ol>
+  <li>Перейдите на вкладку <strong>«Загрузка»</strong>.</li>
+  <li>Вставьте <strong>URL</strong> видео/музыки.</li>
+  <li>Выберите <strong>режим</strong>: <em>Видео</em> или <em>Музыка (MP3)</em>.</li>
+  <li>Выберите <strong>качество</strong> для видео: <em>Лучшее</em>, 2160p, 1440p, 1080p, 720p, 480p. Для MP3 автоматически используется лучший аудиопоток.</li>
+  <li>При желании измените <strong>папку загрузки</strong> (по умолчанию используется ваша папка <code>Downloads</code>).</li>
+  <li>Нажмите <strong>«Загрузить»</strong>. Файлу присваивается имя <code>Title [id].mp4</code> или <code>Title [id].mp3</code>.</li>
+</ol>
+<div class="note"><strong>Совет:</strong> если FFmpeg не установлен, видеозагрузка переключается на <em>однопотоковые</em> файлы (видео может быть без звука или в менее распространённом контейнере). Установите FFmpeg на вкладке «Инструменты», чтобы получать чистые объединённые MP4-файлы.</div>
+
+<h2>10. Панель задач</h2>
+<ul>
+  <li>Каждая операция (конвертация, загрузка, установка) выполняется в фоне как <strong>задача</strong>.</li>
+  <li>Задачи отображаются в нижней части окна с процентом выполнения и кратким сообщением о статусе.</li>
+  <li>В случае успеха показывается путь к созданному файлу; кнопка открывает папку / выделяет файл в файловом менеджере.</li>
+</ul>
+
+<h2>11. Устранение неполадок</h2>
+<ul>
+  <li><strong>«yt-dlp не найден» / ошибка загрузки</strong> → установите <strong>yt-dlp</strong> на вкладке «Инструменты».</li>
+  <li><strong>В скачанном видео нет звука или необычный контейнер</strong> → установите <strong>FFmpeg</strong>, чтобы потоки объединялись.</li>
+  <li><strong>DOCX → PDF ничего не создаёт</strong> → установите <strong>LibreOffice</strong>.</li>
+  <li><strong>PDF → изображение/текст ничего не создаёт</strong> → установите <strong>poppler</strong>.</li>
+  <li><strong>Загрузка зависает / прогресс застывает</strong> → возможно, платформа блокирует yt-dlp или соединение; обновите yt-dlp (переустановите через «Инструменты») и попробуйте снова.</li>
+  <li><strong>Не удаётся установить инструмент</strong> → проверьте подключение к интернету / прокси / брандмауэр; загрузка выполняется с GitHub Releases или johnvansickle.com.</li>
+</ul>
+
+<h2 id="build-from-source">12. Сборка из исходного кода</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # binary → build/bin/
+</code></pre>
+<p>Для Linux сначала потребуются пакеты разработки WebKit2GTK/GTK3:</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> запускает приложение в режиме разработки с «горячей» перезагрузкой. Команда автоматически пересоздаёт <code>frontend/dist</code> и <code>frontend/wailsjs</code>. Конвейер CI для Linux (AMD64 + ARM64) предоставлен в каталоге <code>.github/workflows</code>.</p>
+
+<h2>13. Структура проекта</h2>
+<pre><code>├── app.go                 # Wails bindings: jobs, convert, download, dialogs
+├── i18n.go                # Backend strings + system-language detection
+├── main.go                # App entry point (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document converters
+│   ├── toolkit/           # download, binary lookup, ffmpeg helpers
+│   ├── tools/             # tool detection + one-click installers
+│   └── ytdlp/             # yt-dlp wrapper (progress parsing, formats)
+├── frontend/
+│   └── src/               # vanilla-JS UI (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;language&gt;/       # this documentation (HTML)
+</code></pre>
+
+<h2>14. Ссылки и благодарности</h2>
+<p>Этот проект был бы невозможен без этих замечательных проектов с открытым исходным кодом:</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — настольный фреймворк Go ↔ ОС (MIT) — <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — движок загрузки для тысяч платформ (Unlicense)</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — движок конвертации (LGPL/GPL)</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — сборки FFmpeg для Windows, используемые установщиком в один клик (GPL)</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — статические сборки FFmpeg для Linux, используемые установщиком в один клик (GPL)</li>
+  <li><a href="https://go.dev">Go</a> — язык программирования</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — сборки CI для Linux</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · Документация · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>

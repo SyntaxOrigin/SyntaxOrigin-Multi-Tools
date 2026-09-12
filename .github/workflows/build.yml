@@ -1,0 +1,170 @@
+name: Build (CI)
+
+# GitHub Actions üzerinde Linux + Windows GUI sürümlerini derler ve yayımlar.
+# - Her "v*" tag'i (örn. v1.0.0) ve manuel "workflow_dispatch" çalıştırır.
+# - Linux: amd64 host üzerinde native + AppImage paketi, arm64 cross-toolchain.
+# - Windows: windows-latest runner'da native (WebView2 dahil).
+# - Üretilen tüm ikililer artifact olarak yüklenir ve tag Release'ine eklenir.
+#
+# macOS sürümü yerel makineden (wails build) üretilir.
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - label: amd64
+            goos: linux/amd64
+          - label: arm64
+            goos: linux/arm64
+            cc: aarch64-linux-gnu-gcc
+            cross-pkgs: gcc-aarch64-linux-gnu libgtk-3-dev:arm64 libwebkit2gtk-4.1-dev:arm64 pkg-config
+
+    runs-on: ubuntu-24.04
+    env:
+      CGO_ENABLED: "1"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.x"
+          cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: System dependencies (native)
+        if: ${{ !matrix.cc }}
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+
+      - name: System dependencies (arm64 cross)
+        if: ${{ matrix.cc }}
+        run: |
+          sudo dpkg --add-architecture arm64
+          sudo apt-get update
+          sudo apt-get install -y ${{ matrix.cross-pkgs }}
+
+      - name: Install Wails CLI
+        run: go install github.com/wailsapp/wails/v2/cmd/wails@v2.15.0
+
+      - name: Build (${{ matrix.goos }})
+        env:
+          CC: ${{ matrix.cc }}
+          PKG_CONFIG_PATH: ${{ matrix.cc != '' && '/usr/lib/aarch64-linux-gnu/pkgconfig' || '' }}
+        run: wails build -platform "${{ matrix.goos }}"
+
+      - name: Package binary
+        run: |
+          mkdir -p release
+          cp build/bin/* release/syntaxorigin-multitools-linux-${{ matrix.label }}
+          chmod +x release/syntaxorigin-multitools-linux-${{ matrix.label }}
+
+      - name: Package AppImage (amd64)
+        if: ${{ matrix.label == 'amd64' }}
+        env:
+          APPIMAGE_EXTRACT_AND_RUN: "1"
+        run: |
+          mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
+          cp release/syntaxorigin-multitools-linux-amd64 AppDir/usr/bin/syntaxorigin-multitools
+          cp build/appicon.png AppDir/usr/share/icons/hicolor/256x256/apps/syntaxorigin-multitools.png
+          printf '%s\n' \
+            '[Desktop Entry]' \
+            'Type=Application' \
+            'Name=SyntaxOrigin Multi Tools' \
+            'GenericName=File Converter and Media Downloader' \
+            'Comment=Multi-format file converter and media downloader' \
+            'Exec=syntaxorigin-multitools' \
+            'Icon=syntaxorigin-multitools' \
+            'Terminal=false' \
+            'Categories=Utility;AudioVideo;Graphics;' > AppDir/usr/share/applications/syntaxorigin-multitools.desktop
+          ln -s usr/bin/syntaxorigin-multitools AppDir/AppRun
+          chmod +x AppDir/AppRun
+          wget -q https://github.com/TheAssassin/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
+          chmod +x appimagetool
+          ARCH=x86_64 ./appimagetool --no-appstream AppDir syntaxorigin-multitools-linux-amd64.AppImage
+          mv syntaxorigin-multitools-linux-amd64.AppImage release/
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: syntaxorigin-multitools-linux-${{ matrix.label }}
+          path: release/
+          if-no-files-found: error
+
+  build-windows:
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.x"
+          cache: true
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: frontend/package-lock.json
+
+      - name: Install Wails CLI
+        shell: bash
+        run: go install github.com/wailsapp/wails/v2/cmd/wails@v2.15.0
+
+      - name: Build
+        shell: bash
+        run: wails build -platform windows/amd64 -webview2 embed
+
+      - name: Package
+        shell: bash
+        run: |
+          mkdir -p release
+          cp build/bin/syntaxorigin-multitools.exe release/syntaxorigin-multitools-windows-amd64.exe
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: syntaxorigin-multitools-windows-amd64
+          path: release/
+          if-no-files-found: error
+
+  release:
+    # Yalnızca tag push'larında: ikilileri GitHub Release'e ekler.
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build-linux, build-windows]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+
+    steps:
+      - name: Download artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Publish to release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: dist/*

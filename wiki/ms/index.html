@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — Dokumentasi</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>Panduan pengguna lengkap untuk penukar fail &amp; pemuat turun media desktop — v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html" class="sel">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. Gambaran keseluruhan</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong> ialah aplikasi desktop untuk
+  <strong>menukar fail</strong> (video, audio, imej, dokumen dan PDF) dan
+  <strong>memuat turun media</strong> daripada beribu-ribu platform, dibungkus dalam
+  tetingkap asli yang pantas. Aplikasi ini dibina dengan rangka kerja Wails: antara muka pengguna
+  ialah halaman HTML/CSS/JS biasa, manakala semua kerja berat (FFmpeg, yt-dlp,
+  LibreOffice, poppler) dijalankan dalam backend Go. Ia menyokong <strong>21 bahasa</strong>
+  dan berfungsi pada <strong>Windows</strong> dan <strong>Linux</strong>.
+</p>
+
+<h2>2. Ciri-ciri</h2>
+<ul>
+  <li>Menukar fail <strong>video</strong>, <strong>audio</strong>, <strong>imej</strong> dan <strong>dokumen</strong> antara format.</li>
+  <li><strong>Memuat turun</strong> video atau muzik MP3 daripada platform yang disokong oleh yt-dlp.</li>
+  <li><strong>Pemasangan satu klik</strong> FFmpeg dan yt-dlp; pengesanan automatik LibreOffice dan poppler.</li>
+  <li><strong>21 bahasa</strong>: diambil secara automatik daripada sistem pengendalian, boleh ditukar pada bila-bila masa, dengan susun atur RTL untuk bahasa Arab, Urdu dan Parsi.</li>
+  <li><strong>Senarai tugasan langsung</strong> dengan bar kemajuan dan mesej status langkah demi langkah.</li>
+  <li>Tiada pustaka antara muka luaran — UI desktop gelap yang pantas.</li>
+</ul>
+
+<h2>3. Format yang disokong</h2>
+<table>
+  <tr><th>Jenis</th><th>Input</th><th>Output</th></tr>
+  <tr><td>Video</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>Audio</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>Imej</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>Dokumen</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>Nota:</strong> penukaran dokumen (PDF ↔ DOCX, PDF → imej/teks) memerlukan <strong>LibreOffice</strong> dan/atau <strong>poppler</strong> dipasang pada sistem. Ia dikesan secara automatik tetapi tidak disertakan bersama aplikasi — lihat <a href="#tools-tab">tab Alat</a>.</div>
+
+<h2>4. Keperluan</h2>
+<h3>Alat masa jalan</h3>
+<table>
+  <tr><th>Alat</th><th>Digunakan untuk</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>Semua penukaran video/audio/imej; muat turun gabungan kualiti terbaik</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>Muat turun video/muzik daripada platform</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>Penukaran DOCX ↔ PDF</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → imej, PDF → teks</td></tr>
+</table>
+<p>FFmpeg dan yt-dlp boleh dipasang <strong>dari dalam aplikasi</strong> dengan satu klik. LibreOffice dan poppler mesti dipasang oleh pengguna (pautan dipaparkan dalam tab Alat).</p>
+
+<h2>5. Pemasangan (Windows / Linux)</h2>
+<ol>
+  <li>Muat turun fail binari untuk platform anda dan jalankannya (lihat fail keluaran), <em>atau</em> bina sendiri — lihat <a href="#build-from-source">Membina daripada sumber</a>.</li>
+  <li>Pada pelancaran pertama, aplikasi memilih bahasa sistem pengendalian secara automatik. Jika tidak dapat dikesan, ia kembali kepada bahasa Inggeris.</li>
+  <li>Buka tab <strong>Alat</strong>. Alat yang ditandakan sebagai tiada menunjukkan butang <strong>Pasang</strong>. Pasang <strong>FFmpeg</strong> dan <strong>yt-dlp</strong> terlebih dahulu.</li>
+  <li>Anda bersedia untuk menukar dan memuat turun.</li>
+</ol>
+<div class="warn"><strong>Windows:</strong> kerana binaan lalai tidak ditandatangani, SmartScreen mungkin memberi amaran tentang "penerbit tidak diketahui". Pilih <em>Maklumat lanjut → Jalankan juga</em>. Sesetengah perisian antivirus/proksi boleh menyekat muat turun binari; tambah pengecualian untuk aplikasi dan folder <code>bin</code>nya.</div>
+
+<h2>6. Pemilihan bahasa</h2>
+<ul>
+  <li>Semasa permulaan, bahasa sistem pengendalian digunakan secara automatik (lalai: bahasa Inggeris).</li>
+  <li><strong>Pemilih bahasa</strong> terletak di penjuru kanan atas tetingkap. Memilih bahasa serta-merta menterjemah keseluruhan antara muka (termasuk tugasan yang sedang berjalan).</li>
+  <li>Pilihan manual anda diingati dan diberi keutamaan pada pelancaran seterusnya.</li>
+  <li>Bahasa Arab, Urdu dan Parsi menggunakan susun atur dari kanan ke kiri secara automatik.</li>
+</ul>
+
+<h2 id="tools-tab">7. Tab Alat</h2>
+<table>
+  <tr><th>Alat</th><th>Boleh dipasang dalam aplikasi</th><th>Nota</th></tr>
+  <tr><td>FFmpeg</td><td>Ya</td><td>Windows: binaan GPL BtbN; Linux: binaan statik johnvansickle (≈120 MB)</td></tr>
+  <tr><td>yt-dlp</td><td>Ya</td><td>Binari yang sepadan dengan platform anda dimuat turun</td></tr>
+  <tr><td>LibreOffice</td><td>Tidak</td><td>Pasang daripada <a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a></td></tr>
+  <tr><td>poppler</td><td>Tidak</td><td>Pasang daripada <a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a></td></tr>
+</table>
+<p>Fail disimpan dalam folder konfigurasi pengguna di bawah <code>SyntaxOrigin Multi Tools\bin</code> (Windows: <code>%APPDATA%</code>; Linux: <code>$XDG_CONFIG_HOME</code> atau <code>~/.config</code>).</p>
+
+<h2>8. Panduan penukaran</h2>
+<ol>
+  <li>Pergi ke tab <strong>Tukar</strong>.</li>
+  <li>Pilih <strong>Jenis</strong> (Video / Audio / Imej / Dokumen).</li>
+  <li>Klik <strong>Pilih input</strong> dan pilih fail (format yang disokong ditapis secara automatik).</li>
+  <li>Pilih <strong>format sasaran</strong>. Untuk video/audio, anda boleh menetapkan <strong>bitrate</strong> secara pilihan; untuk video, anda juga boleh menskalakan <strong>lebar × tinggi</strong>.</li>
+  <li>Pilih <strong>lokasi output</strong> (nama fail dicadangkan secara automatik) dan tekan <strong>Tukar</strong>.</li>
+  <li>Tugasan muncul di bahagian bawah (<strong>Tugasan</strong>) dengan bar kemajuan langsung.</li>
+</ol>
+
+<h2>9. Panduan muat turun</h2>
+<ol>
+  <li>Pergi ke tab <strong>Muat Turun</strong>.</li>
+  <li>Tampal <strong>URL</strong> video/muzik.</li>
+  <li>Pilih <strong>Mod</strong>: <em>Video</em> atau <em>Muzik (MP3)</em>.</li>
+  <li>Pilih <strong>Kualiti</strong> untuk video: <em>Terbaik</em>, 2160p, 1440p, 1080p, 720p, 480p. Untuk MP3, strim audio terbaik digunakan secara automatik.</li>
+  <li>Secara pilihan, ubah <strong>folder muat turun</strong> (lalai: folder <code>Downloads</code> anda).</li>
+  <li>Tekan <strong>Muat Turun</strong>. Output dinamakan <code>Title [id].mp4</code> atau <code>Title [id].mp3</code>.</li>
+</ol>
+<div class="note"><strong>Petua:</strong> jika FFmpeg tidak dipasang, muat turun video menggunakan fail <em>satustrim</em> (video mungkin tiada bunyi atau menggunakan bekas yang kurang biasa). Pasang FFmpeg daripada tab Alat untuk mendapatkan fail MP4 gabungan yang bersih.</div>
+
+<h2>10. Panel tugasan</h2>
+<ul>
+  <li>Setiap operasi (tukar, muat turun, pasang) berjalan di latar belakang sebagai <strong>tugasan</strong>.</li>
+  <li>Tugasan disenaraikan di bahagian bawah tetingkap dengan peratus kemajuan dan mesej status ringkas.</li>
+  <li>Apabila berjaya, laluan fail yang dihasilkan dipaparkan; butang membuka folder / memilih fail dalam pengurus fail.</li>
+</ul>
+
+<h2>11. Penyelesaian masalah</h2>
+<ul>
+  <li><strong>"yt-dlp tidak ditemui" / ralat muat turun</strong> → pasang <strong>yt-dlp</strong> daripada tab Alat.</li>
+  <li><strong>Video yang dimuat turun tiada bunyi atau bekas pelik</strong> → pasang <strong>FFmpeg</strong> supaya strim digabungkan.</li>
+  <li><strong>DOCX → PDF tidak menghasilkan apa-apa</strong> → pasang <strong>LibreOffice</strong>.</li>
+  <li><strong>PDF → imej/teks tidak menghasilkan apa-apa</strong> → pasang <strong>poppler</strong>.</li>
+  <li><strong>Muat turun terhenti / kemajuan membeku</strong> → platform mungkin menyekat yt-dlp atau sambungan; kemas kini yt-dlp (pasang semula daripada Alat) dan cuba lagi.</li>
+  <li><strong>Pemasangan alat gagal</strong> → semak sambungan internet / proksi / tembok api; muat turun datang daripada GitHub Releases atau johnvansickle.com.</li>
+</ul>
+
+<h2 id="build-from-source">12. Membina daripada sumber</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # binary → build/bin/
+</code></pre>
+<p>Linux memerlukan pakej pembangunan WebKit2GTK/GTK3 terlebih dahulu:</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> melancarkan aplikasi dalam mod pembangunan muat semula panas. Perintah itu menjana semula <code>frontend/dist</code> dan <code>frontend/wailsjs</code> secara automatik. Saluran paip CI Linux (AMD64 + ARM64) disediakan di bawah <code>.github/workflows</code>.</p>
+
+<h2>13. Struktur projek</h2>
+<pre><code>├── app.go                 # Wails bindings: jobs, convert, download, dialogs
+├── i18n.go                # Backend strings + system-language detection
+├── main.go                # App entry point (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document converters
+│   ├── toolkit/           # download, binary lookup, ffmpeg helpers
+│   ├── tools/             # tool detection + one-click installers
+│   └── ytdlp/             # yt-dlp wrapper (progress parsing, formats)
+├── frontend/
+│   └── src/               # vanilla-JS UI (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;language&gt;/       # this documentation (HTML)
+</code></pre>
+
+<h2>14. Rujukan &amp; Penghargaan</h2>
+<p>Projek ini tidak akan mungkin wujud tanpa projek sumber terbuka yang hebat ini:</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — rangka kerja desktop Go ↔ OS (MIT) — <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — enjin muat turun untuk beribu-ribu platform (Unlicense)</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — enjin penukaran (LGPL/GPL)</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — binaan FFmpeg Windows yang digunakan oleh pemasang satu klik (GPL)</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — binaan statik FFmpeg Linux yang digunakan oleh pemasang satu klik (GPL)</li>
+  <li><a href="https://go.dev">Go</a> — bahasa pengaturcaraan</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — binaan CI Linux</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · Dokumentasi · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>

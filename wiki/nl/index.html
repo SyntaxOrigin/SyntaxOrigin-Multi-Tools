@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — Documentatie</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>Volledige gebruikershandleiding voor de desktop-bestandsconverter &amp; mediadownloader — v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html" class="sel">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. Overzicht</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong> is een desktoptoepassing voor het
+  <strong>converteren van bestanden</strong> (video, audio, afbeeldingen, office
+  en PDF) en het <strong>downloaden van media</strong> van duizenden platforms,
+  verpakt in een snel native venster. De app is gebouwd met het
+  Wails-framework: de gebruikersinterface is een gewone HTML/CSS/JS-pagina,
+  terwijl al het zware werk (FFmpeg, yt-dlp, LibreOffice, poppler) in een
+  Go-backend draait. De app ondersteunt <strong>21 talen</strong> en werkt op
+  <strong>Windows</strong> en <strong>Linux</strong>.
+</p>
+
+<h2>2. Functies</h2>
+<ul>
+  <li>Converteer <strong>video</strong>-, <strong>audio</strong>-, <strong>afbeeldings</strong>- en <strong>document</strong>bestanden tussen formaten.</li>
+  <li><strong>Download</strong> video's of MP3-muziek van platforms die door yt-dlp worden ondersteund.</li>
+  <li><strong>Installatie met één klik</strong> van FFmpeg en yt-dlp; automatische detectie van LibreOffice en poppler.</li>
+  <li><strong>21 talen</strong>: automatisch overgenomen van het besturingssysteem, op elk moment omschakelbaar, met RTL-layout voor Arabisch, Urdu en Perzisch.</li>
+  <li><strong>Live-taaklijst</strong> met voortgangsbalken en stapsgewijze statusmeldingen.</li>
+  <li>Geen externe frontend-bibliotheken — een snelle, donkere desktopinterface.</li>
+</ul>
+
+<h2>3. Ondersteunde formaten</h2>
+<table>
+  <tr><th>Soort</th><th>Ingangen</th><th>Uitgangen</th></tr>
+  <tr><td>Video</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>Audio</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>Afbeelding</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>Document</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>Opmerking:</strong> documentconversies (PDF ↔ DOCX, PDF → afbeelding/tekst) vereisen dat <strong>LibreOffice</strong> en/of <strong>poppler</strong> op het systeem zijn geïnstalleerd. Ze worden automatisch gedetecteerd, maar zijn niet in de app meegeleverd — zie <a href="#tools-tab">tabblad Tools</a>.</div>
+
+<h2>4. Vereisten</h2>
+<h3>Runtime-tools</h3>
+<table>
+  <tr><th>Tool</th><th>Gebruikt voor</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>Alle video-/audio-/afbeeldingsconversies; samengevoegde downloads van de beste kwaliteit</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>Video-/muziekdownloads van platforms</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>DOCX ↔ PDF-conversie</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → afbeelding, PDF → tekst</td></tr>
+</table>
+<p>FFmpeg en yt-dlp kunnen <strong>vanuit de toepassing</strong> met één klik worden geïnstalleerd. LibreOffice en poppler moeten door de gebruiker worden geïnstalleerd (links worden op het tabblad Tools getoond).</p>
+
+<h2>5. Installatie (Windows / Linux)</h2>
+<ol>
+  <li>Download het binaire bestand voor uw platform en voer het uit (zie de releasebestanden), <em>of</em> bouw het zelf — zie <a href="#build-from-source">Bouwen vanuit de broncode</a>.</li>
+  <li>Bij de eerste start selecteert de app automatisch de taal van het besturingssysteem. Kan die niet worden gedetecteerd, dan valt de app terug op het Engels.</li>
+  <li>Open het tabblad <strong>Tools</strong>. Tools die als ontbrekend worden gemarkeerd, tonen een knop <strong>Installeren</strong>. Installeer eerst <strong>FFmpeg</strong> en <strong>yt-dlp</strong>.</li>
+  <li>U bent klaar om te converteren en te downloaden.</li>
+</ol>
+<div class="warn"><strong>Windows:</strong> omdat de standaardversie niet ondertekend is, kan SmartScreen waarschuwen voor een "onbekende uitgever". Kies <em>Meer info → Toch uitvoeren</em>. Sommige antivirus-/proxyprogramma's kunnen binaire downloads blokkeren; voeg een uitzondering toe voor de app en de map <code>bin</code>.</div>
+
+<h2>6. Taalselectie</h2>
+<ul>
+  <li>Bij het opstarten wordt automatisch de taal van het besturingssysteem gebruikt (fallback: Engels).</li>
+  <li>De <strong>taalkiezer</strong> bevindt zich rechtsboven in het venster. Het kiezen van een taal vertaalt onmiddellijk de hele interface (inclusief lopende taken).</li>
+  <li>Uw handmatige keuze wordt onthouden en heeft bij de volgende start prioriteit.</li>
+  <li>Arabisch, Urdu en Perzisch gebruiken automatisch een rechts-naar-links-layout.</li>
+</ul>
+
+<h2 id="tools-tab">7. Tabblad Tools</h2>
+<table>
+  <tr><th>Tool</th><th>In de app installeerbaar</th><th>Opmerkingen</th></tr>
+  <tr><td>FFmpeg</td><td>Ja</td><td>Windows: BtbN-GPL-build; Linux: johnvansickle statische build (± 120&nbsp;MB)</td></tr>
+  <tr><td>yt-dlp</td><td>Ja</td><td>Het binaire bestand dat bij uw platform past, wordt gedownload</td></tr>
+  <tr><td>LibreOffice</td><td>Nee</td><td>Installeer via <a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a></td></tr>
+  <tr><td>poppler</td><td>Nee</td><td>Installeer via <a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a></td></tr>
+</table>
+<p>De bestanden worden opgeslagen in de persoonlijke configuratiemap onder <code>SyntaxOrigin Multi Tools\bin</code> (Windows: <code>%APPDATA%</code>; Linux: <code>$XDG_CONFIG_HOME</code> of <code>~/.config</code>).</p>
+
+<h2>8. Handleiding converteren</h2>
+<ol>
+  <li>Ga naar het tabblad <strong>Converteren</strong>.</li>
+  <li>Kies het <strong>soort</strong> (video / audio / afbeelding / document).</li>
+  <li>Klik op <strong>Invoer selecteren</strong> en kies het bestand (ondersteunde formaten worden automatisch gefilterd).</li>
+  <li>Kies het <strong>doelformaat</strong>. Voor video/audio kunt u optioneel een <strong>bitrate</strong> instellen; voor video kunt u ook de <strong>breedte × hoogte</strong> schalen.</li>
+  <li>Kies de <strong>uitvoerlocatie</strong> (er wordt automatisch een bestandsnaam voorgesteld) en druk op <strong>Converteren</strong>.</li>
+  <li>De taak verschijnt onderaan (<strong>Taken</strong>) met een live voortgangsbalk.</li>
+</ol>
+
+<h2>9. Handleiding downloaden</h2>
+<ol>
+  <li>Ga naar het tabblad <strong>Downloaden</strong>.</li>
+  <li>Plak de <strong>URL</strong> van de video/muziek.</li>
+  <li>Kies de <strong>modus</strong>: <em>Video</em> of <em>Muziek (MP3)</em>.</li>
+  <li>Kies de <strong>kwaliteit</strong> voor video: <em>Best</em>, 2160p, 1440p, 1080p, 720p, 480p. Voor MP3 wordt automatisch de beste audiostream gebruikt.</li>
+  <li>Wijzig optioneel de <strong>downloadmap</strong> (standaard uw map <code>Downloads</code>).</li>
+  <li>Druk op <strong>Downloaden</strong>. De uitvoer krijgt de naam <code>Title [id].mp4</code> of <code>Title [id].mp3</code>.</li>
+</ol>
+<div class="note"><strong>Tip:</strong> als FFmpeg niet is geïnstalleerd, vallen videodownloads terug op <em>single-stream</em>-bestanden (video kan zonder geluid zijn of een minder gangbare container gebruiken). Installeer FFmpeg via het tabblad Tools voor nette, samengevoegde MP4-bestanden.</div>
+
+<h2>10. Deelvenster Taken</h2>
+<ul>
+  <li>Elke bewerking (converteren, downloaden, installeren) draait op de achtergrond als een <strong>taak</strong>.</li>
+  <li>Taken worden onderaan het venster weergegeven met voortgangspercentage en een korte statusmelding.</li>
+  <li>Bij succes wordt het pad van het geproduceerde bestand getoond; de knop opent de map / selecteert het bestand in de bestandsbeheerder.</li>
+</ul>
+
+<h2>11. Problemen oplossen</h2>
+<ul>
+  <li><strong>"yt-dlp niet gevonden" / downloadfout</strong> → installeer <strong>yt-dlp</strong> via het tabblad Tools.</li>
+  <li><strong>Gedownloade video zonder geluid of met een vreemde container</strong> → installeer <strong>FFmpeg</strong>, zodat de streams worden samengevoegd.</li>
+  <li><strong>DOCX → PDF levert niets op</strong> → installeer <strong>LibreOffice</strong>.</li>
+  <li><strong>PDF → afbeelding/tekst levert niets op</strong> → installeer <strong>poppler</strong>.</li>
+  <li><strong>Download loopt vast / voortgang bevroren</strong> → het platform blokkeert mogelijk yt-dlp of de verbinding; werk yt-dlp bij (opnieuw installeren via Tools) en probeer het opnieuw.</li>
+  <li><strong>Toolinstallatie mislukt</strong> → controleer internetverbinding / proxy / firewall; de download komt van GitHub Releases of johnvansickle.com.</li>
+</ul>
+
+<h2 id="build-from-source">12. Bouwen vanuit de broncode</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # binary → build/bin/
+</code></pre>
+<p>Linux heeft eerst de WebKit2GTK/GTK3-ontwikkelpakketten nodig:</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> start de app in de hot-reload-ontwikkelmodus. Het commando genereert <code>frontend/dist</code> en <code>frontend/wailsjs</code> automatisch opnieuw. Er is een Linux-CI-pipeline (AMD64 + ARM64) beschikbaar onder <code>.github/workflows</code>.</p>
+
+<h2>13. Projectstructuur</h2>
+<pre><code>├── app.go                 # Wails bindings: jobs, convert, download, dialogs
+├── i18n.go                # Backend strings + system-language detection
+├── main.go                # App entry point (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document converters
+│   ├── toolkit/           # download, binary lookup, ffmpeg helpers
+│   ├── tools/             # tool detection + one-click installers
+│   └── ytdlp/             # yt-dlp wrapper (progress parsing, formats)
+├── frontend/
+│   └── src/               # vanilla-JS UI (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;language&gt;/       # this documentation (HTML)
+</code></pre>
+
+<h2>14. Referenties &amp; naamsvermeldingen</h2>
+<p>Dit project zou niet mogelijk zijn zonder deze geweldige open-sourceprojecten:</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — Go ↔ OS-desktopframework (MIT) — <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — de downloadengine voor duizenden platforms (Unlicense)</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — de conversie-engine (LGPL/GPL)</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — Windows-FFmpeg-builds die door de één-klik-installatie worden gebruikt (GPL)</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — Linux-FFmpeg-statische builds die door de één-klik-installatie worden gebruikt (GPL)</li>
+  <li><a href="https://go.dev">Go</a> — programmeertaal</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — Linux-CI-builds</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · Documentatie · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>

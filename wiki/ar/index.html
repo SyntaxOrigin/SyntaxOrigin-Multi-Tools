@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — التوثيق</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>دليل المستخدم الكامل لمحوِّل الملفات وبرنامج تنزيل الوسائط لسطح المكتب — الإصدار v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html" class="sel">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. نظرة عامة</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong> هو تطبيق سطح مكتب لـ
+  <strong>تحويل الملفات</strong> (فيديو، صوت، صور، أوفيس وPDF) و
+  <strong>تنزيل الوسائط</strong> من آلاف المنصات، داخل
+  نافذة أصلية سريعة. تم بناؤه باستخدام إطار عمل Wails: واجهة المستخدم
+  عبارة عن صفحة HTML/CSS/JS عادية، بينما تعمل جميع المهام الثقيلة (FFmpeg وyt-dlp
+  وLibreOffice وpoppler) في الخلفية بلغة Go. يدعم
+  <strong>21 لغة</strong> ويعمل على <strong>Windows</strong> و
+  <strong>Linux</strong>.
+</p>
+
+<h2>2. الميزات</h2>
+<ul>
+  <li>تحويل ملفات <strong>الفيديو</strong> و<strong>الصوت</strong> و<strong>الصور</strong> و<strong>المستندات</strong> بين الصيغ.</li>
+  <li><strong>تنزيل</strong> فيديو أو موسيقى MP3 من المنصات المدعومة بواسطة yt-dlp.</li>
+  <li><strong>تثبيت بنقرة واحدة</strong> لـ FFmpeg وyt-dlp؛ مع الاكتشاف التلقائي لـ LibreOffice وpoppler.</li>
+  <li><strong>21 لغة</strong>: تُؤخذ تلقائيًا من نظام التشغيل، ويمكن تبديلها في أي وقت، مع تخطيط من اليمين إلى اليسار (RTL) للعربية والأردية والفارسية.</li>
+  <li><strong>قائمة مهام مباشرة (Jobs)</strong> مع أشرطة تقدّم ورسائل حالة خطوة بخطوة.</li>
+  <li>بدون مكتبات واجهة خارجية — واجهة سطح مكتب داكنة وسريعة.</li>
+</ul>
+
+<h2>3. الصيغ المدعومة</h2>
+<table>
+  <tr><th>النوع</th><th>المدخلات</th><th>المخرجات</th></tr>
+  <tr><td>فيديو</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>صوت</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>صورة</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>مستند</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>ملاحظة:</strong> تتطلب تحويلات المستندات (PDF ↔ DOCX، PDF → صورة/نص) تثبيت <strong>LibreOffice</strong> و/أو <strong>poppler</strong> على النظام. يتم اكتشافها تلقائيًا لكنها غير مضمّنة مع التطبيق — راجع <a href="#tools-tab">تبويب Tools</a>.</div>
+
+<h2>4. المتطلبات</h2>
+<h3>أدوات التشغيل</h3>
+<table>
+  <tr><th>الأداة</th><th>تُستخدم لـ</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>جميع تحويلات الفيديو/الصوت/الصور؛ تنزيلات مدمجة بأعلى جودة</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>تنزيل فيديو/موسيقى من المنصات</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>تحويل DOCX ↔ PDF</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → صورة، PDF → نص</td></tr>
+</table>
+<p>يمكن تثبيت FFmpeg وyt-dlp <strong>من داخل التطبيق</strong> بنقرة واحدة. يجب على المستخدم تثبيت LibreOffice وpoppler بنفسه (تظهر الروابط في تبويب Tools).</p>
+
+<h2>5. التثبيت (Windows / Linux)</h2>
+<ol>
+  <li>نزّل الملف التنفيذي (binary) المناسب لمنصتك وشغّله (انظر ملفات الإصدارات)، <em>أو</em> ابنِه بنفسك — راجع <a href="#build-from-source">البناء من المصدر</a>.</li>
+  <li>عند أول تشغيل، يختار التطبيق لغة نظام التشغيل تلقائيًا. إذا تعذّر اكتشافها، يرجع إلى الإنجليزية.</li>
+  <li>افتح تبويب <strong>Tools</strong>. الأدوات غير المتوفرة تُظهر زر <strong>Install</strong> (تثبيت). ثبّت <strong>FFmpeg</strong> و<strong>yt-dlp</strong> أولًا.</li>
+  <li>أنت الآن جاهز للتحويل والتنزيل.</li>
+</ol>
+<div class="warn"><strong>Windows:</strong> نظرًا لأن البناء الافتراضي غير موقّع، فقد يحذّر SmartScreen بشأن «ناشر غير معروف». اختر <em>مزيد من المعلومات ← التشغيل على أي حال</em> (More info → Run anyway). قد تحجب بعض أدوات مكافحة الفيروسات/البروكسي تنزيل الملفات التنفيذية؛ أضف استثناءً للتطبيق ومجلد <code>bin</code> الخاص به.</div>
+
+<h2>6. اختيار اللغة</h2>
+<ul>
+  <li>عند بدء التشغيل تُستخدم لغة نظام التشغيل تلقائيًا (الاحتياط: الإنجليزية).</li>
+  <li><strong>محدِّد اللغة</strong> موجود في أعلى يمين النافذة. اختيار لغة ما يترجم الواجهة بالكامل فورًا (بما في ذلك المهام قيد التشغيل).</li>
+  <li>يتم تذكُّر اختيارك اليدوي ويحظى بالأولوية عند التشغيل التالي.</li>
+  <li>تستخدم العربية والأردية والفارسية تخطيطًا من اليمين إلى اليسار تلقائيًا.</li>
+</ul>
+
+<h2 id="tools-tab">7. تبويب Tools</h2>
+<table>
+  <tr><th>الأداة</th><th>قابلة للتثبيت داخل التطبيق</th><th>ملاحظات</th></tr>
+  <tr><td>FFmpeg</td><td>نعم</td><td>Windows: بناء BtbN GPL؛ Linux: بناء johnvansickle الثابت (حوالي 120 م.ب)</td></tr>
+  <tr><td>yt-dlp</td><td>نعم</td><td>يتم تنزيل الملف التنفيذي المطابق لمنصتك</td></tr>
+  <tr><td>LibreOffice</td><td>لا</td><td>ثبّت من <a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a></td></tr>
+  <tr><td>poppler</td><td>لا</td><td>ثبّت من <a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a></td></tr>
+</table>
+<p>تُخزَّن الملفات في مجلد الإعدادات الخاص بكل مستخدم تحت <code>SyntaxOrigin Multi Tools\bin</code> (Windows: <code>%APPDATA%</code>؛ Linux: <code>$XDG_CONFIG_HOME</code> أو <code>~/.config</code>).</p>
+
+<h2>8. دليل التحويل</h2>
+<ol>
+  <li>انتقل إلى تبويب <strong>Convert</strong> (تحويل).</li>
+  <li>اختر <strong>النوع</strong> (فيديو / صوت / صورة / مستند).</li>
+  <li>انقر على <strong>اختيار الإدخال</strong> (Select input) واختر الملف (يتم تصفية الصيغ المدعومة تلقائيًا).</li>
+  <li>اختر <strong>صيغة الهدف</strong>. يمكنك اختياريًا ضبط <strong>معدل البت (bitrate)</strong> للفيديو/الصوت؛ وبالنسبة للفيديو يمكنك أيضًا تغيير <strong>العرض × الارتفاع</strong>.</li>
+  <li>اختر <strong>موقع المخرجات</strong> (يُقترح اسم ملف تلقائيًا) واضغط <strong>Convert</strong> (تحويل).</li>
+  <li>تظهر المهمة في الأسفل (<strong>Jobs</strong>) مع شريط تقدّم مباشر.</li>
+</ol>
+
+<h2>9. دليل التنزيل</h2>
+<ol>
+  <li>انتقل إلى تبويب <strong>Download</strong> (تنزيل).</li>
+  <li>الصق <strong>URL</strong> الخاص بالفيديو/الموسيقى.</li>
+  <li>اختر <strong>الوضع</strong>: <em>فيديو</em> أو <em>موسيقى (MP3)</em>.</li>
+  <li>اختر <strong>الجودة</strong> للفيديو: <em>الأفضل</em>، 2160p، 1440p، 1080p، 720p، 480p. بالنسبة لـ MP3 يُستخدم أفضل مسار صوتي تلقائيًا.</li>
+  <li>بإمكانك اختياريًا تغيير <strong>مجلد التنزيل</strong> (الافتراضي هو مجلد <code>Downloads</code> لديك).</li>
+  <li>اضغط <strong>Download</strong> (تنزيل). يُسمى المخرج <code>Title [id].mp4</code> أو <code>Title [id].mp3</code>.</li>
+</ol>
+<div class="note"><strong>نصيحة:</strong> إذا لم يكن FFmpeg مثبتًا، فستنخفض عمليات تنزيل الفيديو إلى ملفات <em>أحادية المسار (single-stream)</em> (قد يفتقر الفيديو إلى الصوت أو يستخدم حاوية أقل شيوعًا). ثبّت FFmpeg من تبويب Tools للحصول على ملفات MP4 مدمجة نظيفة.</div>
+
+<h2>10. لوحة Jobs</h2>
+<ul>
+  <li>كل عملية (تحويل، تنزيل، تثبيت) تُنفَّذ في الخلفية كـ <strong>job</strong> (مهمة).</li>
+  <li>تُدرج المهام في أسفل النافذة مع نسبة التقدم ورسالة حالة مختصرة.</li>
+  <li>عند النجاح يُعرض مسار الملف المُنتج؛ يفتح الزر المجلد / يحدد الملف في مدير الملفات.</li>
+</ul>
+
+<h2>11. استكشاف الأخطاء وإصلاحها</h2>
+<ul>
+  <li><strong>«yt-dlp غير موجود» / خطأ تنزيل</strong> ← ثبّت <strong>yt-dlp</strong> من تبويب Tools.</li>
+  <li><strong>الفيديو الذي تم تنزيله بلا صوت أو بحاوية غريبة</strong> ← ثبّت <strong>FFmpeg</strong> حتى يتم دمج المسارات.</li>
+  <li><strong>تحويل DOCX ← PDF لا يُنتج شيئًا</strong> ← ثبّت <strong>LibreOffice</strong>.</li>
+  <li><strong>تحويل PDF ← صورة/نص لا يُنتج شيئًا</strong> ← ثبّت <strong>poppler</strong>.</li>
+  <li><strong>التنزيل يتوقف / يتجمد التقدم</strong> ← قد تكون المنصة تحجب yt-dlp أو الاتصال؛ حدّث yt-dlp (أعد تثبيته من Tools) وحاول مجددًا.</li>
+  <li><strong>فشل تثبيت الأداة</strong> ← تحقق من اتصال الإنترنت / البروكسي / جدار الحماية؛ يأتي التنزيل من GitHub Releases أو johnvansickle.com.</li>
+</ul>
+
+<h2 id="build-from-source">12. البناء من المصدر</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # binary → build/bin/
+</code></pre>
+<p>يتطلب Linux أولًا حزم تطوير WebKit2GTK/GTK3:</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> يشغّل التطبيق في وضع التطوير بإعادة التحميل السريع (hot-reload). يعيد الأمر توليد <code>frontend/dist</code> و<code>frontend/wailsjs</code> تلقائيًا. يتم توفير خط أنابيب CI للينكس (AMD64 + ARM64) تحت <code>.github/workflows</code>.</p>
+
+<h2>13. هيكل المشروع</h2>
+<pre><code>├── app.go                 # Wails bindings: jobs, convert, download, dialogs
+├── i18n.go                # Backend strings + system-language detection
+├── main.go                # App entry point (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document converters
+│   ├── toolkit/           # download, binary lookup, ffmpeg helpers
+│   ├── tools/             # tool detection + one-click installers
+│   └── ytdlp/             # yt-dlp wrapper (progress parsing, formats)
+├── frontend/
+│   └── src/               # vanilla-JS UI (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;language&gt;/       # this documentation (HTML)
+</code></pre>
+
+<h2>14. المراجع والإسناد</h2>
+<p>لم يكن هذا المشروع ممكنًا بدون هذه المشاريع مفتوحة المصدر الرائعة:</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — إطار عمل سطح المكتب Go ↔ نظام التشغيل (MIT) — <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — محرك التنزيل لآلاف المنصات (Unlicense)</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — محرك التحويل (LGPL/GPL)</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — بناءات FFmpeg لـ Windows التي يستخدمها المثبّت بنقرة واحدة (GPL)</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — بناءات FFmpeg الثابتة للينكس التي يستخدمها المثبّت بنقرة واحدة (GPL)</li>
+  <li><a href="https://go.dev">Go</a> — لغة البرمجة</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — بناءات CI للينكس</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · التوثيق · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>

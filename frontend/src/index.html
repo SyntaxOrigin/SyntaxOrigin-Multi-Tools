@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SyntaxOrigin Multi Tools</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+
+    <!-- ===== Kenar Çubuğu ===== -->
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="logo">◆</div>
+            <div class="brand-text">
+                <h1>SyntaxOrigin</h1>
+                <span>Multi Tools</span>
+            </div>
+        </div>
+
+        <nav class="nav" id="nav">
+            <button class="nav-item active" data-view="convert">
+                <span class="nav-ico">⇄</span><span data-i18n="nav.convert">Dönüştür</span>
+            </button>
+            <button class="nav-item" data-view="download">
+                <span class="nav-ico">⬇</span><span data-i18n="nav.download">İndirme</span>
+            </button>
+            <button class="nav-item" data-view="tools">
+                <span class="nav-ico">🛠</span><span data-i18n="nav.tools">Araçlar</span>
+            </button>
+            <button class="nav-item" data-view="about">
+                <span class="nav-ico">ℹ</span><span data-i18n="nav.about">Hakkında</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-foot">
+            <span class="side-ver" id="sideVer">v1.0.0</span>
+        </div>
+    </aside>
+
+    <!-- ===== Ana Alan ===== -->
+    <main class="content">
+
+        <header class="topbar">
+            <h2 id="viewTitle">Dönüştür</h2>
+            <div class="top-right">
+                <select id="langSel" class="lang-select"></select>
+                <div class="health" id="health" title="Harici araç durumu"></div>
+            </div>
+        </header>
+
+        <!-- DÖNÜŞTÜR -->
+        <section class="view active" id="view-convert">
+
+            <div class="seg" id="kindSeg">
+                <button class="seg-btn active" data-kind="video" data-i18n="kind.video">Video</button>
+                <button class="seg-btn" data-kind="audio" data-i18n="kind.audio">Ses</button>
+                <button class="seg-btn" data-kind="image" data-i18n="kind.image">Görüntü</button>
+                <button class="seg-btn" data-kind="document" data-i18n="kind.document">Belge / PDF</button>
+            </div>
+
+            <div class="card">
+                <div class="card-grid">
+
+                    <label class="field span2">
+                        <span class="lbl" data-i18n="field.source">Kaynak dosya</span>
+                        <div class="pathrow">
+                            <input id="inputPath" class="input mono" placeholder="Dosya seçin…" data-i18n-ph="ph.source" readonly>
+                            <button class="btn ghost" id="btnPickInput" data-i18n="btn.pick">Seç…</button>
+                        </div>
+                    </label>
+
+                    <label class="field">
+                        <span class="lbl" data-i18n="field.format">Hedef format</span>
+                        <select id="formatSelect" class="input"></select>
+                    </label>
+
+                    <label class="field hidden" id="optBitrate">
+                        <span class="lbl" data-i18n="opt.bitrate">Bit hızı (kbps)</span>
+                        <input type="number" id="bitrateInput" class="input" min="0" placeholder="otomatik" data-i18n-ph="ph.auto">
+                    </label>
+
+                    <div class="seg-split hidden" id="optSize">
+                        <label class="field">
+                            <span class="lbl" data-i18n="field.width">Genişlik (px)</span>
+                            <input type="number" id="widthInput" class="input" min="0" placeholder="koru" data-i18n-ph="ph.keep">
+                        </label>
+                        <label class="field">
+                            <span class="lbl" data-i18n="field.height">Yükseklik (px)</span>
+                            <input type="number" id="heightInput" class="input" min="0" placeholder="koru" data-i18n-ph="ph.keep">
+                        </label>
+                    </div>
+
+                    <label class="field span2">
+                        <span class="lbl" data-i18n="field.output">Çıktı konumu</span>
+                        <div class="pathrow">
+                            <input id="outputPath" class="input mono" placeholder="Kaydetme konumu…" data-i18n-ph="ph.output" readonly>
+                            <button class="btn ghost" id="btnPickOutput" disabled data-i18n="btn.pick">Seç…</button>
+                        </div>
+                    </label>
+
+                    <div class="span2 actrow">
+                        <button class="btn primary" id="btnConvert" disabled data-i18n="btn.convert">Dönüştürücüyü Başlat</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h3 data-i18n="card.jobs">Aktiviteler</h3>
+                    <span class="muted" id="convCounter"></span>
+                </div>
+                <div class="jobs" id="convJobs"></div>
+            </div>
+        </section>
+
+        <!-- İNDİRME -->
+        <section class="view" id="view-download">
+            <div class="card">
+                <div class="card-grid">
+                    <label class="field span2">
+                        <span class="lbl" data-i18n="field.url">Video / müzik adresi (URL)</span>
+                        <input id="dlUrl" class="input mono" placeholder="https://www.youtube.com/watch?v=…">
+                    </label>
+
+                    <div class="seg seg-sm span2" id="dlModeSeg">
+                        <button class="seg-btn active" data-mode="video" data-i18n="mode.video">🎬 Video</button>
+                        <button class="seg-btn" data-mode="mp3" data-i18n="mode.mp3">🎵 Müzik (MP3)</button>
+                    </div>
+
+                    <label class="field" id="optQuality">
+                        <span class="lbl" data-i18n="field.quality">Kalite (video)</span>
+                        <select id="dlQuality" class="input">
+                            <option value="best" data-i18n="q.best">En iyi</option>
+                            <option value="1080" selected>1080p</option>
+                            <option value="720">720p</option>
+                            <option value="480">480p</option>
+                            <option value="1440">1440p</option>
+                            <option value="2160">4K</option>
+                        </select>
+                    </label>
+
+                    <label class="field span2">
+                        <span class="lbl" data-i18n="field.dldir">İndirme klasörü</span>
+                        <div class="pathrow">
+                            <input id="dlDir" class="input mono" readonly>
+                            <button class="btn ghost" id="btnPickDir" data-i18n="btn.change">Değiştir…</button>
+                        </div>
+                    </label>
+
+                    <div class="span2 actrow">
+                        <button class="btn primary" id="btnDownload" disabled data-i18n="btn.download">İndirmeyi Başlat</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-head">
+                    <h3 data-i18n="card.downloads">İndirmeler</h3>
+                    <span class="muted" id="dlCounter"></span>
+                </div>
+                <div class="jobs" id="dlJobs"></div>
+            </div>
+        </section>
+
+        <!-- ARAÇLAR -->
+        <section class="view" id="view-tools">
+            <p class="hint" data-i18n="hint.tools">
+                Dönüştürme ve indirme işlemleri için gereken harici araçların durumu.
+                Küçük ve taşınabilir olanlar (&nbsp;<b>FFmpeg</b>, <b>yt-dlp</b>&nbsp;) tek tıkla kurulabilir;
+                büyük paketler (&nbsp;<b>LibreOffice</b>, <b>poppler</b>&nbsp;) için resmî sayfaya yönlendirilirsiniz.
+            </p>
+            <div class="tool-list" id="toolList"></div>
+            <div class="card install-progress-card hidden" id="installCard">
+                <div class="card-head">
+                    <h3 id="installTitle" data-i18n="install.title">Kurulum</h3>
+                    <span class="pct" id="installPct">%0</span>
+                </div>
+                <div class="bar"><div class="bar-fill" id="installFill"></div></div>
+                <div class="muted" id="installMsg">…</div>
+            </div>
+        </section>
+
+        <!-- HAKKINDA -->
+        <section class="view" id="view-about">
+            <div class="about-grid">
+                <div class="card about-main">
+                    <div class="about-logo">◆</div>
+                    <h3 id="aboutName">SyntaxOrigin Multi Tools</h3>
+                    <div class="muted"><span data-i18n="about.version">Sürüm</span> <span id="aboutVer">1.0.0</span> · Go <span id="aboutGo"></span></div>
+                    <p class="about-desc" data-i18n="about.desc">
+                        Video, ses, görüntü ve ofis/PDF dosyalarını tek bir çatı altında dönüştürür;
+                        popüler platformlardan video ve müzik indirir. Tüm işlemler arka planda
+                        (goroutine) koşar, ilerleme anlık gösterilir.
+                    </p>
+                    <ul class="about-feats">
+                        <li data-i18n="feat.video">⏭ Video: MP4 · MKV · AVI · MOV · WebM</li>
+                        <li data-i18n="feat.audio">🎵 Ses: MP3 · WAV · FLAC · AAC · OGG</li>
+                        <li data-i18n="feat.image">🖼 Görüntü: PNG · JPG · WebP · BMP + boyutlandırma</li>
+                        <li data-i18n="feat.doc">📄 PDF ↔ Görsel/Metin, DOCX ↔ PDF</li>
+                        <li data-i18n="feat.download">⬇ Binlerce platformdan video/müzik indirme</li>
+                        <li data-i18n="feat.tools">🛠 Eksik araçları tek tıkla kurma</li>
+                    </ul>
+                </div>
+
+                <div class="card github-card">
+                    <h3 data-i18n="about.author">Geliştirici</h3>
+                    <div class="gh-wrap">
+                        <a href="https://github.com/SyntaxOrigin" target="_blank" rel="noopener" class="gh-avatar">
+                            <img src="https://github.com/SyntaxOrigin.png?size=64"
+                                 alt="SyntaxOrigin avatar" width="40" height="40">
+                        </a>
+                        <a href="https://github.com/SyntaxOrigin" target="_blank" rel="noopener" class="gh-link">
+                            <span class="gh-mark">GitHub</span>
+                            <span class="gh-handle">SyntaxOrigin</span>
+                        </a>
+                    </div>
+                    <p class="muted gh-note" data-i18n="about.note">
+                        Uygulamanın kaynak koduna ve yeni sürümlere GitHub üzerinden ulaşabilirsiniz.
+                    </p>
+                    <button class="btn ghost" id="btnOpenRepo" data-i18n="btn.openProfile">GitHub profilini aç</button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</div>
+
+<div class="toasts" id="toasts"></div>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

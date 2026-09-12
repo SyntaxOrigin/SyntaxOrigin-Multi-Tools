@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — Dokümantasyon</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>Masaüstü dosya dönüştürücü ve medya indirici için eksiksiz kullanım kılavuzu — v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html" class="sel">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. Genel Bakış</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong>, <strong>dosya dönüştürme</strong>
+  (video, ses, görüntü, ofis ve PDF) ve binlerce platformdan
+  <strong>medya indirme</strong> işlemlerini hızlı, yerel bir pencerede yapan
+  bir masaüstü uygulamasıdır. Wails çerçevesiyle geliştirilmiştir: arayüz
+  sıradan bir HTML/CSS/JS sayfasıyken, tüm ağır işler (FFmpeg, yt-dlp,
+  LibreOffice, poppler) Go arka uçunda çalışır. <strong>21 dil</strong>
+  destekler ve <strong>Windows</strong> ile <strong>Linux</strong> üzerinde
+  çalışır.
+</p>
+
+<h2>2. Özellikler</h2>
+<ul>
+  <li><strong>Video</strong>, <strong>ses</strong>, <strong>görüntü</strong> ve <strong>belge</strong> dosyalarını biçimler arasında dönüştürün.</li>
+  <li>yt-dlp'nin desteklediği platformlardan <strong>video veya MP3 müzik indirin</strong>.</li>
+  <li>FFmpeg ve yt-dlp'nin <strong>tek tıkla kurulumu</strong>; LibreOffice ve poppler'ın otomatik algılanması.</li>
+  <li><strong>21 dil</strong>: işletim sisteminden otomatik alınır, istediğiniz an değiştirilebilir; Arapça, Urduca ve Farsça için RTL düzen.</li>
+  <li>Canlı <strong>iş listesi</strong>: ilerleme çubukları ve adım adım durum mesajları.</li>
+  <li>Harici arayüz kütüphanesi yok — hızlı, koyu tema masaüstü arayüzü.</li>
+</ul>
+
+<h2>3. Desteklenen biçimler</h2>
+<table>
+  <tr><th>Tür</th><th>Girdiler</th><th>Çıktılar</th></tr>
+  <tr><td>Video</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>Ses</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>Görüntü</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>Belge</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>Not:</strong> belge dönüşümleri (PDF ↔ DOCX, PDF → görsel/metin) sistemde <strong>LibreOffice</strong> ve/veya <strong>poppler</strong> kurulu olmasını gerektirir. Bunlar otomatik algılanır ancak uygulamayla birlikte gelmez — bkz. <a href="#tools-tab">Araçlar sekmesi</a>.</div>
+
+<h2>4. Gereksinimler</h2>
+<h3>Çalışma zamanı araçları</h3>
+<table>
+  <tr><th>Araç</th><th>Ne için kullanılır</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>Tüm video/ses/görüntü dönüşümleri; en kaliteli birleştirilmiş indirmeler</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>Platform video/müzik indirme</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>DOCX ↔ PDF dönüşümü</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → görsel, PDF → metin</td></tr>
+</table>
+<p>FFmpeg ve yt-dlp <strong>uygulamanın içinden tek tıkla</strong> kurulabilir. LibreOffice ve poppler'ı kullanıcı kurmalıdır (bağlantılar Araçlar sekmesinde gösterilir).</p>
+
+<h2>5. Kurulum (Windows / Linux)</h2>
+<ol>
+  <li>Platformunuz için ikiliyi indirip çalıştırın (yayın dosyalarına bakın) <em>veya</em> kendiniz derleyin — bkz. <a href="#build-from-source">Kaynaktan derleme</a>.</li>
+  <li>İlk açılışta uygulama işletim sisteminin dilini otomatik seçer. Algılayamazsa İngilizce'ye düşer.</li>
+  <li><strong>Araçlar</strong> sekmesini açın; eksik olarak işaretlenen araçlarda <strong>Kur</strong> düğmesi görünür. Önce <strong>FFmpeg</strong> ve <strong>yt-dlp</strong>'yi kurun.</li>
+  <li>Artık dönüştürme ve indirme yapmaya hazırsınız.</li>
+</ol>
+<div class="warn"><strong>Windows:</strong> varsayılan derleme imzasız olduğundan SmartScreen "bilinmeyen yayımcı" uyarısı verebilir. <em>Diğer bilgiler → Yine de çalıştır</em> seçeneğini seçin. Bazı antivirüs/proxy araçları ikili indirmeleri engelleyebilir; uygulama ve <code>bin</code> klasörü için istisna ekleyin.</div>
+
+<h2>6. Dil seçimi</h2>
+<ul>
+  <li>Açılışta işletim sisteminin dili otomatik kullanılır (varsayılan düşüş: İngilizce).</li>
+  <li><strong>Dil kutusu</strong> pencerenin sağ üstündedir. Dil seçmek tüm arayüzü anında çevirir (çalışan işler dahil).</li>
+  <li>Manuel seçiminiz hatırlanır ve sonraki açılışta önceliklidir.</li>
+  <li>Arapça, Urduca ve Farsça otomatik olarak sağdan sola düzende gösterilir.</li>
+</ul>
+
+<h2 id="tools-tab">7. Araçlar sekmesi</h2>
+<table>
+  <tr><th>Araç</th><th>Uygulama içinde kurulabilir mi?</th><th>Notlar</th></tr>
+  <tr><td>FFmpeg</td><td>Evet</td><td>Windows: BtbN GPL derlemesi; Linux: johnvansickle statik derleme (≈120 MB)</td></tr>
+  <tr><td>yt-dlp</td><td>Evet</td><td>Platformunuza uygun ikili indirilir</td></tr>
+  <tr><td>LibreOffice</td><td>Hayır</td><td><a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a> adresinden kurun</td></tr>
+  <tr><td>poppler</td><td>Hayır</td><td><a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a> adresinden kurun</td></tr>
+</table>
+<p>Dosyalar, kullanıcı yapılandırma klasöründeki <code>SyntaxOrigin Multi Tools\bin</code> altına kaydedilir (Windows: <code>%APPDATA%</code>; Linux: <code>$XDG_CONFIG_HOME</code> veya <code>~/.config</code>).</p>
+
+<h2>8. Dönüştürme kılavuzu</h2>
+<ol>
+  <li><strong>Dönüştür</strong> sekmesine gidin.</li>
+  <li><strong>Tür</strong> seçin (Video / Ses / Görüntü / Belge).</li>
+  <li><strong>Girişi seç</strong> düğmesine tıklayıp dosyayı seçin (desteklenen biçimler otomatik filtrelenir).</li>
+  <li><strong>Hedef biçimi</strong> seçin. Video/ses için isteğe bağlı <strong>bit hızı</strong> ayarlayabilir; video için <strong>genişlik × yükseklik</strong> ölçekleyebilirsiniz.</li>
+  <li><strong>Çıktı konumunu</strong> seçin (dosya adı otomatik önerilir) ve <strong>Dönüştür</strong>'e basın.</li>
+  <li>İş altta (<strong>İşler</strong>) canlı ilerleme çubuğuyla görünür.</li>
+</ol>
+
+<h2>9. İndirme kılavuzu</h2>
+<ol>
+  <li><strong>İndirme</strong> sekmesine gidin.</li>
+  <li>Video/müzik <strong>URL</strong>'ini yapıştırın.</li>
+  <li><strong>Mod</strong> seçin: <em>Video</em> veya <em>Müzik (MP3)</em>.</li>
+  <li>Video için <strong>Kalite</strong> seçin: <em>En iyi</em>, 2160p, 1440p, 1080p, 720p, 480p. MP3 için en iyi ses akışı otomatik kullanılır.</li>
+  <li>İsteğe bağlı olarak <strong>indirme klasörünü</strong> değiştirin (varsayılan: <code>Downloads</code> klasörünüz).</li>
+  <li><strong>İndir</strong>'e basın. Çıktı <code>Başlık [id].mp4</code> veya <code>Başlık [id].mp3</code> olarak adlandırılır.</li>
+</ol>
+<div class="note"><strong>İpucu:</strong> FFmpeg kurulu değilse video indirmeleri <em>tek akışlı</em> dosyaya düşer (ses olmayabilir ya da daha az bilinen bir kap kullanılır). Temiz, birleştirilmiş MP4 için Araçlar sekmesinden FFmpeg kurun.</div>
+
+<h2>10. İşler paneli</h2>
+<ul>
+  <li>Her işlem (dönüştürme, indirme, kurulum) arka planda bir <strong>iş</strong> olarak çalışır.</li>
+  <li>İşler pencerenin altında yüzde ilerlemesi ve kısa durum mesajıyla listelenir.</li>
+  <li>Başarı durumunda üretilen dosya yolu gösterilir; düğme klasörü / dosyayı dosya yöneticisinde açar.</li>
+</ul>
+
+<h2>11. Sorun giderme</h2>
+<ul>
+  <li><strong>"yt-dlp bulunamadı" / indirme hatası</strong> → Araçlar sekmesinden <strong>yt-dlp</strong> kurun.</li>
+  <li><strong>İndirilen videoda ses yok veya kap garip</strong> → akışların birleşmesi için <strong>FFmpeg</strong> kurun.</li>
+  <li><strong>DOCX → PDF çıktı üretmiyor</strong> → <strong>LibreOffice</strong> kurun.</li>
+  <li><strong>PDF → görsel/metin çıktı üretmiyor</strong> → <strong>poppler</strong> kurun.</li>
+  <li><strong>İndirme takıldı / ilerleme durdu</strong> → platform yt-dlp'yi veya bağlantıyı engelliyor olabilir; yt-dlp'yi güncelleyin (Araçlar'dan yeniden kurun) ve tekrar deneyin.</li>
+  <li><strong>Araç kurulumu başarısız</strong> → internet/proxy/güvenlik duvarını kontrol edin; indirme GitHub Releases veya johnvansickle.com'dan gelir.</li>
+</ul>
+
+<h2 id="build-from-source">12. Kaynaktan derleme</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # ikili → build/bin/
+</code></pre>
+<p>Linux önce WebKit2GTK/GTK3 geliştirme paketlerini ister:</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> uygulamayı sıcak yeniden yükleme geliştirme modunda başlatır. Komut <code>frontend/dist</code> ve <code>frontend/wailsjs</code> dizinlerini otomatik üretir. <code>.github/workflows</code> altında Linux CI hattı (AMD64 + ARM64) bulunur.</p>
+
+<h2>13. Proje yapısı</h2>
+<pre><code>├── app.go                 # Wails bağlantıları: işler, dönüştürme, indirme, diyaloglar
+├── i18n.go                # Arka uç metinleri + sistem dili algılama
+├── main.go                # Uygulama giriş noktası (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document dönüştürücüleri
+│   ├── toolkit/           # indirme, ikili arama, ffmpeg yardımcıları
+│   ├── tools/             # araç algılama + tek tık kurucular
+│   └── ytdlp/             # yt-dlp sarmalayıcı (ilerleme ayrıştırma, biçimler)
+├── frontend/
+│   └── src/               # vanilla-JS arayüz (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;dil&gt;/            # bu dokümantasyon (HTML)
+</code></pre>
+
+<h2>14. Kaynaklar ve Atıflar</h2>
+<p>Bu proje, aşağıdaki harika açık kaynak projeler olmadan var olamazdı:</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — Go ↔ işletim sistemi masaüstü çerçevesi (MIT) — <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — binlerce platform için indirme motoru (Unlicense)</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — dönüştürme motoru (LGPL/GPL)</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — tek tık kurucunun kullandığı Windows FFmpeg derlemeleri (GPL)</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — tek tık kurucunun kullandığı Linux FFmpeg statik derlemeleri (GPL)</li>
+  <li><a href="https://go.dev">Go</a> — programlama dili</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — Linux CI derlemeleri</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · Dokümantasyon · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>

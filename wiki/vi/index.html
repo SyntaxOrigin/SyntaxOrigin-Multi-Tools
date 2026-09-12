@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — Tài liệu</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>Hướng dẫn sử dụng đầy đủ cho trình chuyển đổi tệp và tải phương tiện trên máy tính — v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html" class="sel">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. Tổng quan</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong> là một ứng dụng máy tính để
+  <strong>chuyển đổi tệp</strong> (video, âm thanh, hình ảnh, tài liệu văn phòng và PDF) và
+  <strong>tải phương tiện</strong> từ hàng nghìn nền tảng, được đóng gói trong một
+  cửa sổ gốc nhanh chóng. Ứng dụng được xây dựng bằng framework Wails: giao diện người dùng
+  là một trang HTML/CSS/JS thông thường, trong khi tất cả công việc nặng (FFmpeg, yt-dlp,
+  LibreOffice, poppler) chạy ở backend Go. Ứng dụng hỗ trợ <strong>21
+  ngôn ngữ</strong> và hoạt động trên <strong>Windows</strong> và
+  <strong>Linux</strong>.
+</p>
+
+<h2>2. Tính năng</h2>
+<ul>
+  <li>Chuyển đổi tệp <strong>video</strong>, <strong>âm thanh</strong>, <strong>hình ảnh</strong> và <strong>tài liệu</strong> giữa các định dạng.</li>
+  <li><strong>Tải xuống</strong> video hoặc nhạc MP3 từ các nền tảng được yt-dlp hỗ trợ.</li>
+  <li><strong>Cài đặt một chạm</strong> FFmpeg và yt-dlp; tự động phát hiện LibreOffice và poppler.</li>
+  <li><strong>21 ngôn ngữ</strong>: tự động lấy theo hệ điều hành, có thể chuyển đổi bất cứ lúc nào, với bố cục RTL cho tiếng Ả Rập, tiếng Urdu và tiếng Ba Tư.</li>
+  <li><strong>Danh sách công việc trực tiếp</strong> với thanh tiến trình và thông báo trạng thái từng bước.</li>
+  <li>Không cần thư viện frontend bên ngoài — giao diện máy tính nhanh, tối màu.</li>
+</ul>
+
+<h2>3. Định dạng được hỗ trợ</h2>
+<table>
+  <tr><th>Loại</th><th>Đầu vào</th><th>Đầu ra</th></tr>
+  <tr><td>Video</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>Âm thanh</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>Hình ảnh</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>Tài liệu</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>Lưu ý:</strong> việc chuyển đổi tài liệu (PDF ↔ DOCX, PDF → hình ảnh/văn bản) yêu cầu cài đặt <strong>LibreOffice</strong> và/hoặc <strong>poppler</strong> trên hệ thống. Chúng được phát hiện tự động nhưng không được đóng kèm với ứng dụng — xem <a href="#tools-tab">Tab công cụ</a>.</div>
+
+<h2>4. Yêu cầu hệ thống</h2>
+<h3>Công cụ chạy trong thời gian thực</h3>
+<table>
+  <tr><th>Công cụ</th><th>Dùng để</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>Tất cả chuyển đổi video/âm thanh/hình ảnh; tải xuống hợp nhất chất lượng tốt nhất</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>Tải video/nhạc từ các nền tảng</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>Chuyển đổi DOCX ↔ PDF</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → hình ảnh, PDF → văn bản</td></tr>
+</table>
+<p>FFmpeg và yt-dlp có thể được cài đặt <strong>từ bên trong ứng dụng</strong> chỉ với một cú nhấp chuột. LibreOffice và poppler phải được người dùng tự cài đặt (liên kết được hiển thị trong tab Công cụ).</p>
+
+<h2>5. Cài đặt (Windows / Linux)</h2>
+<ol>
+  <li>Tải tệp nhị phân cho nền tảng của bạn và chạy nó (xem các tệp phát hành), <em>hoặc</em> tự xây dựng — xem <a href="#build-from-source">Xây dựng từ mã nguồn</a>.</li>
+  <li>Ở lần khởi động đầu tiên, ứng dụng tự động chọn ngôn ngữ của hệ điều hành. Nếu không phát hiện được, nó sẽ dùng tiếng Anh.</li>
+  <li>Mở tab <strong>Công cụ</strong>. Các công cụ được đánh dấu là thiếu sẽ hiển thị nút <strong>Cài đặt</strong>. Hãy cài đặt <strong>FFmpeg</strong> và <strong>yt-dlp</strong> trước.</li>
+  <li>Bạn đã sẵn sàng để chuyển đổi và tải xuống.</li>
+</ol>
+<div class="warn"><strong>Windows:</strong> vì bản dựng mặc định không được ký, SmartScreen có thể cảnh báo về "nhà phát hành không xác định". Hãy chọn <em>Thông tin khác → Vẫn chạy</em>. Một số công cụ diệt virus/ứng dụng proxy có thể chặn việc tải tệp nhị phân; hãy thêm ngoại lệ cho ứng dụng và thư mục <code>bin</code> của nó.</div>
+
+<h2>6. Chọn ngôn ngữ</h2>
+<ul>
+  <li>Khi khởi động, ngôn ngữ của hệ điều hành được sử dụng tự động (dự phòng: tiếng Anh).</li>
+  <li><strong>Bộ chọn ngôn ngữ</strong> nằm ở góc trên bên phải cửa sổ. Chọn một ngôn ngữ sẽ lập tức dịch toàn bộ giao diện (bao gồm cả các công việc đang chạy).</li>
+  <li>Lựa chọn thủ công của bạn được ghi nhớ và được ưu tiên ở lần khởi động tiếp theo.</li>
+  <li>Tiếng Ả Rập, tiếng Urdu và tiếng Ba Tư tự động sử dụng bố cục từ phải sang trái.</li>
+</ul>
+
+<h2 id="tools-tab">7. Tab Công cụ</h2>
+<table>
+  <tr><th>Công cụ</th><th>Cài được trong ứng dụng</th><th>Ghi chú</th></tr>
+  <tr><td>FFmpeg</td><td>Có</td><td>Windows: bản dựng BtbN GPL; Linux: bản dựng tĩnh johnvansickle (≈120 MB)</td></tr>
+  <tr><td>yt-dlp</td><td>Có</td><td>Tệp nhị phân phù hợp với nền tảng của bạn sẽ được tải xuống</td></tr>
+  <tr><td>LibreOffice</td><td>Không</td><td>Cài đặt từ <a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a></td></tr>
+  <tr><td>poppler</td><td>Không</td><td>Cài đặt từ <a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a></td></tr>
+</table>
+<p>Các tệp được lưu trong thư mục cấu hình riêng của từng người dùng tại <code>SyntaxOrigin Multi Tools\bin</code> (Windows: <code>%APPDATA%</code>. Linux: <code>$XDG_CONFIG_HOME</code> hoặc <code>~/.config</code>).</p>
+
+<h2>8. Hướng dẫn chuyển đổi</h2>
+<ol>
+  <li>Đi tới tab <strong>Chuyển đổi</strong>.</li>
+  <li>Chọn <strong>Loại</strong> (Video / Âm thanh / Hình ảnh / Tài liệu).</li>
+  <li>Nhấp <strong>Chọn đầu vào</strong> và chọn tệp (các định dạng được hỗ trợ được lọc tự động).</li>
+  <li>Chọn <strong>định dạng đích</strong>. Với video/âm thanh, bạn có thể tùy chọn đặt <strong>bitrate</strong>; với video, bạn cũng có thể thay đổi cỡ <strong>rộng × cao</strong>.</li>
+  <li>Chọn <strong>vị trí đầu ra</strong> (tên tệp được gợi ý tự động) và nhấn <strong>Chuyển đổi</strong>.</li>
+  <li>Công việc xuất hiện ở phía dưới (<strong>Công việc</strong>) với thanh tiến trình trực tiếp.</li>
+</ol>
+
+<h2>9. Hướng dẫn tải xuống</h2>
+<ol>
+  <li>Đi tới tab <strong>Tải xuống</strong>.</li>
+  <li>Dán <strong>URL</strong> video/nhạc.</li>
+  <li>Chọn <strong>Chế độ</strong>: <em>Video</em> hoặc <em>Nhạc (MP3)</em>.</li>
+  <li>Chọn <strong>Chất lượng</strong> cho video: <em>Tốt nhất</em>, 2160p, 1440p, 1080p, 720p, 480p. Với MP3, luồng âm thanh tốt nhất được sử dụng tự động.</li>
+  <li>Tùy chọn thay đổi <strong>thư mục tải xuống</strong> (mặc định là thư mục <code>Downloads</code> của bạn).</li>
+  <li>Nhấn <strong>Tải xuống</strong>. Đầu ra được đặt tên là <code>Title [id].mp4</code> hoặc <code>Title [id].mp3</code>.</li>
+</ol>
+<div class="note"><strong>Mẹo:</strong> nếu FFmpeg chưa được cài đặt, việc tải video sẽ chuyển sang tệp <em>một luồng</em> (video có thể không có âm thanh hoặc dùng định dạng chứa ít phổ biến hơn). Hãy cài đặt FFmpeg từ tab Công cụ để có các tệp MP4 hợp nhất sạch sẽ.</div>
+
+<h2>10. Bảng công việc</h2>
+<ul>
+  <li>Mọi thao tác (chuyển đổi, tải xuống, cài đặt) đều chạy ngầm dưới dạng một <strong>công việc</strong>.</li>
+  <li>Các công việc được liệt kê ở cuối cửa sổ với phần trăm tiến trình và thông báo trạng thái ngắn.</li>
+  <li>Khi thành công, đường dẫn tệp tạo ra được hiển thị; nút sẽ mở thư mục / chọn tệp trong trình quản lý tệp.</li>
+</ul>
+
+<h2>11. Xử lý sự cố</h2>
+<ul>
+  <li><strong>“yt-dlp not found” / lỗi tải xuống</strong> → cài đặt <strong>yt-dlp</strong> từ tab Công cụ.</li>
+  <li><strong>Video tải xuống không có âm thanh hoặc định dạng chứa lạ</strong> → cài đặt <strong>FFmpeg</strong> để các luồng được hợp nhất.</li>
+  <li><strong>DOCX → PDF không tạo ra kết quả</strong> → cài đặt <strong>LibreOffice</strong>.</li>
+  <li><strong>PDF → hình ảnh/văn bản không tạo ra kết quả</strong> → cài đặt <strong>poppler</strong>.</li>
+  <li><strong>Tải xuống bị treo / tiến trình bị đóng băng</strong> → nền tảng có thể đang chặn yt-dlp hoặc kết nối; hãy cập nhật yt-dlp (cài lại từ Công cụ) và thử lại.</li>
+  <li><strong>Cài đặt công cụ thất bại</strong> → kiểm tra kết nối internet / proxy / tường lửa; quá trình tải xuống đến từ GitHub Releases hoặc johnvansickle.com.</li>
+</ul>
+
+<h2 id="build-from-source">12. Xây dựng từ mã nguồn</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # binary → build/bin/
+</code></pre>
+<p>Linux trước tiên cần các gói phát triển WebKit2GTK/GTK3:</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> khởi chạy ứng dụng ở chế độ phát triển với tải lại nóng. Lệnh này tự động tạo lại <code>frontend/dist</code> và <code>frontend/wailsjs</code>. Một đường ống CI Linux (AMD64 + ARM64) được cung cấp trong <code>.github/workflows</code>.</p>
+
+<h2>13. Cấu trúc dự án</h2>
+<pre><code>├── app.go                 # Wails bindings: jobs, convert, download, dialogs
+├── i18n.go                # Backend strings + system-language detection
+├── main.go                # App entry point (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document converters
+│   ├── toolkit/           # download, binary lookup, ffmpeg helpers
+│   ├── tools/             # tool detection + one-click installers
+│   └── ytdlp/             # yt-dlp wrapper (progress parsing, formats)
+├── frontend/
+│   └── src/               # vanilla-JS UI (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;language&gt;/       # this documentation (HTML)
+</code></pre>
+
+<h2>14. Tài liệu tham khảo &amp; ghi công</h2>
+<p>Dự án này sẽ không thể thành hiện thực nếu không có những dự án mã nguồn mở tuyệt vời sau:</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — framework máy tính Go ↔ OS (MIT) — <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — công cụ tải xuống cho hàng nghìn nền tảng (Unlicense)</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — công cụ chuyển đổi (LGPL/GPL)</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — bản dựng FFmpeg cho Windows được trình cài đặt một chạm sử dụng (GPL)</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — bản dựng FFmpeg tĩnh cho Linux được trình cài đặt một chạm sử dụng (GPL)</li>
+  <li><a href="https://go.dev">Go</a> — ngôn ngữ lập trình</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — bản dựng CI Linux</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · Tài liệu · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>

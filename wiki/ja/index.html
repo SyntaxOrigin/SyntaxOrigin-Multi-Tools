@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SyntaxOrigin Multi Tools — ドキュメント</title>
+<style>
+  :root { --bg:#0e1220; --panel:#151a2e; --line:#232a44; --text:#e8ecf7; --muted:#9aa3bd; --accent:#5b8cff; --ok:#34d399; --err:#f87171; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:'Segoe UI', system-ui, -apple-system, Roboto, sans-serif; background:var(--bg); color:var(--text); line-height:1.65; }
+  header { background:linear-gradient(135deg,#182042,#0e1220); border-bottom:1px solid var(--line); padding:34px 40px 28px; }
+  header h1 { margin:0 0 6px; font-size:26px; letter-spacing:.4px; }
+  header p { margin:0; color:var(--muted); max-width:820px; }
+  .langbar { display:flex; flex-wrap:wrap; gap:8px; padding:14px 40px; border-bottom:1px solid var(--line); background:var(--panel); }
+  .langbar a { color:var(--muted); text-decoration:none; font-size:13px; padding:4px 10px; border:1px solid var(--line); border-radius:999px; }
+  .langbar a.sel { color:#fff; border-color:var(--accent); background:rgba(91,140,255,.15); }
+  .langbar a:hover { color:#fff; border-color:var(--accent); }
+  main { max-width:1000px; margin:0 auto; padding:28px 40px 60px; }
+  h2 { margin:40px 0 12px; font-size:20px; padding-bottom:6px; border-bottom:1px solid var(--line); }
+  h3 { margin:22px 0 8px; font-size:16px; color:var(--accent); }
+  p, li { color:var(--text); }
+  code { background:var(--panel); border:1px solid var(--line); border-radius:5px; padding:1px 6px; font-size:13px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:14px 16px; overflow-x:auto; }
+  pre code { background:none; border:none; padding:0; }
+  table { border-collapse:collapse; width:100%; margin:12px 0; font-size:14px; }
+  th, td { border:1px solid var(--line); padding:8px 10px; text-align:left; }
+  th { background:#1b2240; }
+  .note { background:rgba(52,211,153,.08); border:1px solid rgba(52,211,153,.35); border-radius:8px; padding:12px 14px; color:var(--text); }
+  .warn { background:rgba(248,113,113,.08); border:1px solid rgba(248,113,113,.35); border-radius:8px; padding:12px 14px; }
+  ul { padding-left:22px; }
+  footer { border-top:1px solid var(--line); color:var(--muted); font-size:13px; padding:20px 40px; text-align:center; }
+  @media (max-width:700px){ header,.langbar,main,footer{ padding-left:18px; padding-right:18px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>SyntaxOrigin Multi Tools</h1>
+  <p>デスクトップ用ファイル変換・メディアダウンロードの完全ユーザーガイド — v1.0.0</p>
+</header>
+
+<nav class="langbar">
+  <a href="../en/index.html">English</a>
+  <a href="../zh/index.html">中文</a>
+  <a href="../hi/index.html">हिन्दी</a>
+  <a href="../es/index.html">Español</a>
+  <a href="../ar/index.html">العربية</a>
+  <a href="../fr/index.html">Français</a>
+  <a href="../ms/index.html">Bahasa</a>
+  <a href="../pt/index.html">Português</a>
+  <a href="../ru/index.html">Русский</a>
+  <a href="../ur/index.html">اردو</a>
+  <a href="../ja/index.html" class="sel">日本語</a>
+  <a href="../de/index.html">Deutsch</a>
+  <a href="../tr/index.html">Türkçe</a>
+  <a href="../ko/index.html">한국어</a>
+  <a href="../vi/index.html">Tiếng Việt</a>
+  <a href="../it/index.html">Italiano</a>
+  <a href="../fa/index.html">فارسی</a>
+  <a href="../pl/index.html">Polski</a>
+  <a href="../nl/index.html">Nederlands</a>
+  <a href="../uk/index.html">Українська</a>
+</nav>
+
+<main>
+
+<h2>1. 概要</h2>
+<p>
+  <strong>SyntaxOrigin Multi Tools</strong> は、<strong>ファイル変換</strong>（動画・音声・画像・オフィス・PDF）と
+  <strong>数千のプラットフォームからのメディアダウンロード</strong>を行うデスクトップアプリケーションで、
+  高速なネイティブウィンドウにまとめられています。Wails フレームワークで構築されており、
+  ユーザーインターフェースは通常の HTML/CSS/JS ページで、重い処理（FFmpeg、yt-dlp、
+  LibreOffice、poppler）はすべて Go バックエンドで実行されます。<strong>21 の
+  言語</strong>に対応し、<strong>Windows</strong> と
+  <strong>Linux</strong> で動作します。
+</p>
+
+<h2>2. 機能</h2>
+<ul>
+  <li><strong>動画</strong>・<strong>音声</strong>・<strong>画像</strong>・<strong>ドキュメント</strong>ファイルを各種フォーマット間で変換します。</li>
+  <li>yt-dlp が対応するプラットフォームから動画や MP3 音楽を<strong>ダウンロード</strong>します。</li>
+  <li>FFmpeg と yt-dlp の<strong>ワンクリックインストール</strong>。LibreOffice と poppler は自動検出されます。</li>
+  <li><strong>21 の言語</strong>：OS の言語設定を自動的に採用し、いつでも切り替え可能。アラビア語・ウルドゥー語・ペルシア語には RTL レイアウトを使用します。</li>
+  <li>プログレスバーと段階ごとのステータスメッセージを備えた<strong>ライブジョブリスト</strong>。</li>
+  <li>外部フロントエンドライブラリは不要 — 高速でダークなデスクトップ UI。</li>
+</ul>
+
+<h2>3. 対応フォーマット</h2>
+<table>
+  <tr><th>種類</th><th>入力</th><th>出力</th></tr>
+  <tr><td>動画</td><td>mp4, mkv, avi, mov, webm</td><td>mp4, mkv, avi, mov, webm</td></tr>
+  <tr><td>音声</td><td>mp3, wav, flac, aac, ogg</td><td>mp3, wav, flac, aac, ogg</td></tr>
+  <tr><td>画像</td><td>png, jpg (jpeg), webp, bmp</td><td>png, jpg, webp, bmp</td></tr>
+  <tr><td>ドキュメント</td><td>PDF, DOCX</td><td>PDF → PNG, PDF → TXT, DOCX → PDF, PDF → DOCX</td></tr>
+</table>
+<div class="note"><strong>注意：</strong>ドキュメント変換（PDF ↔ DOCX、PDF → 画像/テキスト）には、システムに <strong>LibreOffice</strong> や <strong>poppler</strong> がインストールされている必要があります。これらは自動検出されますが、アプリに同梱されていません — <a href="#tools-tab">ツールタブ</a>を参照してください。</div>
+
+<h2>4. 必要条件</h2>
+<h3>実行時に必要なツール</h3>
+<table>
+  <tr><th>ツール</th><th>用途</th></tr>
+  <tr><td><a href="https://ffmpeg.org">FFmpeg</a></td><td>すべての動画/音声/画像変換。最高品質でマージされたダウンロード</td></tr>
+  <tr><td><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a></td><td>プラットフォームからの動画/音楽ダウンロード</td></tr>
+  <tr><td>LibreOffice (soffice)</td><td>DOCX ↔ PDF 変換</td></tr>
+  <tr><td>poppler (pdftoppm, pdftotext)</td><td>PDF → 画像、PDF → テキスト</td></tr>
+</table>
+<p>FFmpeg と yt-dlp は<strong>アプリケーションの内部から</strong>ワンクリックでインストールできます。LibreOffice と poppler はユーザー自身でインストールする必要があります（リンクはツールタブに表示されます）。</p>
+
+<h2>5. インストール（Windows / Linux）</h2>
+<ol>
+  <li>お使いのプラットフォーム用のバイナリをダウンロードして実行するか（リリースファイルを参照）、<em>または</em>ご自身でビルドします — <a href="#build-from-source">ソースからのビルド</a>を参照してください。</li>
+  <li>初回起動時に、アプリは OS の言語を自動的に選択します。検出できない場合は英語にフォールバックします。</li>
+  <li><strong>ツール</strong>タブを開きます。不足しているツールには<strong>インストール</strong>ボタンが表示されます。最初に<strong>FFmpeg</strong>と<strong>yt-dlp</strong>をインストールしてください。</li>
+  <li>これで変換とダウンロードの準備が整いました。</li>
+</ol>
+<div class="warn"><strong>Windows：</strong>既定のビルドは署名されていないため、SmartScreen が「公開元が不明」という警告を表示する場合があります。<em>詳細情報 → 実行</em>を選択してください。一部のウイルス対策ソフトやプロキシツールがバイナリのダウンロードをブロックする場合があります。アプリとその<code>bin</code>フォルダに例外を追加してください。</div>
+
+<h2>6. 言語の選択</h2>
+<ul>
+  <li>起動時には OS の言語が自動的に使用されます（フォールバック：英語）。</li>
+  <li><strong>言語セレクター</strong>はウィンドウの右上にあります。言語を選択すると、インターフェース全体（実行中のジョブを含む）がすぐに翻訳されます。</li>
+  <li>手動で選択した言語は記憶され、次回の起動時に優先されます。</li>
+  <li>アラビア語・ウルドゥー語・ペルシア語は、右から左へのレイアウトが自動的に適用されます。</li>
+</ul>
+
+<h2 id="tools-tab">7. ツールタブ</h2>
+<table>
+  <tr><th>ツール</th><th>アプリ内でインストール可能</th><th>備考</th></tr>
+  <tr><td>FFmpeg</td><td>はい</td><td>Windows：BtbN GPL ビルド。Linux：johnvansickle の静的ビルド（約120 MB）</td></tr>
+  <tr><td>yt-dlp</td><td>はい</td><td>お使いのプラットフォームに一致するバイナリがダウンロードされます</td></tr>
+  <tr><td>LibreOffice</td><td>いいえ</td><td><a href="https://www.libreoffice.org/download/download-libreoffice/">libreoffice.org</a> からインストール</td></tr>
+  <tr><td>poppler</td><td>いいえ</td><td><a href="https://poppler.freedesktop.org/">poppler.freedesktop.org</a> からインストール</td></tr>
+</table>
+<p>ファイルはユーザーごとの設定フォルダにある <code>SyntaxOrigin Multi Tools\bin</code> に保存されます（Windows：<code>%APPDATA%</code>。Linux：<code>$XDG_CONFIG_HOME</code> または <code>~/.config</code>）。</p>
+
+<h2>8. 変換ガイド</h2>
+<ol>
+  <li><strong>変換</strong>タブに移動します。</li>
+  <li><strong>種類</strong>（動画 / 音声 / 画像 / ドキュメント）を選択します。</li>
+  <li><strong>入力ファイルを選択</strong>をクリックしてファイルを選びます（対応フォーマットは自動的にフィルタリングされます）。</li>
+  <li><strong>変換先フォーマット</strong>を選択します。動画/音声では必要に応じて<strong>ビットレート</strong>を設定でき、動画では<strong>幅 × 高さ</strong>も変更できます。</li>
+  <li><strong>出力先</strong>を選択し（ファイル名は自動的に提案されます）、<strong>変換</strong>を押します。</li>
+  <li>ジョブは下部（<strong>ジョブ</strong>）にリアルタイムのプログレスバー付きで表示されます。</li>
+</ol>
+
+<h2>9. ダウンロードガイド</h2>
+<ol>
+  <li><strong>ダウンロード</strong>タブに移動します。</li>
+  <li>動画/音楽の<strong>URL</strong>を貼り付けます。</li>
+  <li><strong>モード</strong>を選択します：<em>動画</em>または<em>音楽（MP3）</em>。</li>
+  <li>動画の<strong>画質</strong>を選択します：<em>最高</em>、2160p、1440p、1080p、720p、480p。MP3 の場合は、最高の音声ストリームが自動的に使用されます。</li>
+  <li>必要に応じて<strong>ダウンロードフォルダ</strong>を変更します（既定では<code>Downloads</code>フォルダ）。</li>
+  <li><strong>ダウンロード</strong>を押します。出力は <code>Title [id].mp4</code> または <code>Title [id].mp3</code> という名前になります。</li>
+</ol>
+<div class="note"><strong>ヒント：</strong>FFmpeg がインストールされていない場合、動画ダウンロードは<em>単一ストリーム</em>のファイルにフォールバックします（音声がないか、あまり一般的でないコンテナになる場合があります）。きれいにマージされた MP4 ファイルを得るには、ツールタブから FFmpeg をインストールしてください。</div>
+
+<h2>10. ジョブパネル</h2>
+<ul>
+  <li>すべての操作（変換、ダウンロード、インストール）は<strong>ジョブ</strong>としてバックグラウンドで実行されます。</li>
+  <li>ジョブはウィンドウの下部に、進捗率と短いステータスメッセージ付きで一覧表示されます。</li>
+  <li>成功すると生成されたファイルのパスが表示されます。ボタンを押すと、フォルダを開いたり、ファイルマネージャーでファイルを選択したりできます。</li>
+</ul>
+
+<h2>11. トラブルシューティング</h2>
+<ul>
+  <li><strong>「yt-dlp not found」/ ダウンロードエラー</strong> → ツールタブから<strong>yt-dlp</strong>をインストールします。</li>
+  <li><strong>ダウンロードした動画に音声がない、または奇妙なコンテナ形式</strong> → <strong>FFmpeg</strong>をインストールしてストリームをマージします。</li>
+  <li><strong>DOCX → PDF で何も出力されない</strong> → <strong>LibreOffice</strong>をインストールします。</li>
+  <li><strong>PDF → 画像/テキストで何も出力されない</strong> → <strong>poppler</strong>をインストールします。</li>
+  <li><strong>ダウンロードが停滞 / 進行状況が止まる</strong> → プラットフォームが yt-dlp や接続をブロックしている可能性があります。yt-dlp を更新し（ツールから再インストール）、再試行してください。</li>
+  <li><strong>ツールのインストールに失敗する</strong> → インターネット接続 / プロキシ / ファイアウォールを確認してください。ダウンロードは GitHub Releases または johnvansickle.com から行われます。</li>
+</ul>
+
+<h2 id="build-from-source">12. ソースからのビルド</h2>
+<pre><code>go install github.com/wailsapp/wails/v2/cmd/wails@latest
+cd SyntaxOrigin-Multi-Tools
+wails build        # binary → build/bin/
+</code></pre>
+<p>Linux では最初に WebKit2GTK/GTK3 開発パッケージが必要です：</p>
+<pre><code>sudo apt-get install -y libgtk-3-dev libwebkit2gtk-4.1-dev
+</code></pre>
+<p><code>wails dev</code> はホットリロード開発モードでアプリを起動します。このコマンドは <code>frontend/dist</code> と <code>frontend/wailsjs</code> を自動的に再生成します。<code>.github/workflows</code> の下に Linux CI パイプライン（AMD64 + ARM64）が用意されています。</p>
+
+<h2>13. プロジェクト構成</h2>
+<pre><code>├── app.go                 # Wails bindings: jobs, convert, download, dialogs
+├── i18n.go                # Backend strings + system-language detection
+├── main.go                # App entry point (wails.Run)
+├── internal/
+│   ├── converter/         # audio, video, image, document converters
+│   ├── toolkit/           # download, binary lookup, ffmpeg helpers
+│   ├── tools/             # tool detection + one-click installers
+│   └── ytdlp/             # yt-dlp wrapper (progress parsing, formats)
+├── frontend/
+│   └── src/               # vanilla-JS UI (index.html, app.js, i18n.js, style.css)
+├── wails.json
+├── README.md
+└── wiki/&lt;language&gt;/       # this documentation (HTML)
+</code></pre>
+
+<h2>14. リファレンスと謝辞</h2>
+<p>このプロジェクトは、以下の素晴らしいオープンソースプロジェクトなしには実現できませんでした：</p>
+<ul>
+  <li><a href="https://wails.io">Wails</a> — Go ↔ OS デスクトップフレームワーク（MIT）— <a href="https://github.com/wailsapp/wails">github.com/wailsapp/wails</a></li>
+  <li><a href="https://github.com/yt-dlp/yt-dlp">yt-dlp</a> — 数千のプラットフォームに対応するダウンロードエンジン（Unlicense）</li>
+  <li><a href="https://ffmpeg.org">FFmpeg</a> — 変換エンジン（LGPL/GPL）</li>
+  <li><a href="https://github.com/BtbN/FFmpeg-Builds">BtbN / FFmpeg-Builds</a> — ワンクリックインストーラーが使用する Windows 版 FFmpeg ビルド（GPL）</li>
+  <li><a href="https://johnvansickle.com/ffmpeg/">johnvansickle.com</a> — ワンクリックインストーラーが使用する Linux 版 FFmpeg 静的ビルド（GPL）</li>
+  <li><a href="https://go.dev">Go</a> — プログラミング言語</li>
+  <li><a href="https://github.com/features/actions">GitHub Actions</a> — Linux CI ビルド</li>
+</ul>
+
+</main>
+
+<footer>
+  SyntaxOrigin Multi Tools · ドキュメント · v1.0.0 — <a href="https://github.com/SyntaxOrigin">github.com/SyntaxOrigin</a>
+</footer>
+
+</body>
+</html>
