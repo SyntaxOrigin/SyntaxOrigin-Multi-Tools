@@ -62,13 +62,13 @@ jobs:
           # için ports.ubuntu.com (tüm mimarileri barındıran resmî depo) ekle.
           sudo sed -i '/^Types:/i Architectures: amd64' /etc/apt/sources.list.d/ubuntu.sources
           sudo tee /etc/apt/sources.list.d/arm64.sources >/dev/null <<'APT'
-Types: deb
-URIs: http://ports.ubuntu.com/ubuntu-ports/
-Suites: noble noble-updates noble-backports noble-security
-Architectures: arm64
-Components: main restricted universe multiverse
-Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
-APT
+          Types: deb
+          URIs: http://ports.ubuntu.com/ubuntu-ports/
+          Suites: noble noble-updates noble-backports noble-security
+          Architectures: arm64
+          Components: main restricted universe multiverse
+          Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+          APT
           sudo apt-get update
           sudo apt-get install -y ${{ matrix.cross-pkgs }}
 
