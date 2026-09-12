@@ -107,7 +107,7 @@ jobs:
             'Categories=Utility;AudioVideo;Graphics;' > AppDir/usr/share/applications/syntaxorigin-multitools.desktop
           ln -s usr/bin/syntaxorigin-multitools AppDir/AppRun
           chmod +x AppDir/AppRun
-          wget -q https://github.com/TheAssassin/AppImageKit/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
+          wget -q https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
           chmod +x appimagetool
           ARCH=x86_64 ./appimagetool --no-appstream AppDir syntaxorigin-multitools-linux-amd64.AppImage
           mv syntaxorigin-multitools-linux-amd64.AppImage release/
