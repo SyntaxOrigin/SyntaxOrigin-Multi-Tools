@@ -248,6 +248,7 @@ func installFFmpegLinux(ctx context.Context, toolsDir string, progress chan<- fl
 	defer os.RemoveAll(work)
 
 	cmd := exec.CommandContext(ctx, "tar", "-xJf", arc, "-C", work)
+	toolkit.HideConsoleWindow(cmd)
 	if out, err := cmd.CombinedOutput(); err != nil {
 		return fmt.Errorf("tar hatası: %s: %w", strings.TrimSpace(string(out)), err)
 	}

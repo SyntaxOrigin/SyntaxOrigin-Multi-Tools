@@ -64,6 +64,7 @@ func pdfToImage(ctx context.Context, input string) (string, error) {
 
 	args := []string{"-png", "-r", "150", input, outBase}
 	cmd := exec.CommandContext(ctx, bin, args...)
+	toolkit.HideConsoleWindow(cmd)
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
 		return "", fmt.Errorf("pdftoppm hatası: %w", err)
@@ -83,6 +84,7 @@ func pdfToText(input string) (string, error) {
 		return "", err
 	}
 	cmd := exec.Command(bin, input, out)
+	toolkit.HideConsoleWindow(cmd)
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
 		return "", fmt.Errorf("pdftotext hatası: %w", err)
@@ -105,6 +107,7 @@ func officeToPDF(ctx context.Context, input string) (string, error) {
 
 	args := []string{"--headless", "--convert-to", "pdf", "--outdir", dir, input}
 	cmd := exec.CommandContext(ctx, bin, args...)
+	toolkit.HideConsoleWindow(cmd)
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
 		return "", fmt.Errorf("LibreOffice hatası: %w", err)
@@ -125,6 +128,7 @@ func pdfToDocx(ctx context.Context, input string) (string, error) {
 	dir := filepath.Dir(input)
 	args := []string{"--headless", "--convert-to", "docx", "--outdir", dir, input}
 	cmd := exec.CommandContext(ctx, bin, args...)
+	toolkit.HideConsoleWindow(cmd)
 	cmd.Stderr = os.Stderr
 	if err := cmd.Run(); err != nil {
 		return "", fmt.Errorf("LibreOffice (PDF→DOCX) hatası: %w", err)

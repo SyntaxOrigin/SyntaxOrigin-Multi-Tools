@@ -123,6 +123,7 @@ func (d *YTDLP) Download(ctx context.Context, o Options, progress chan<- float64
 	args = append(args, o.URL)
 
 	cmd := exec.CommandContext(ctx, d.Path, args...)
+	toolkit.HideConsoleWindow(cmd)
 
 	pr, pw := io.Pipe()
 	cmd.Stdout = pw
@@ -154,9 +155,6 @@ func (d *YTDLP) Download(ctx context.Context, o Options, progress chan<- float64
 	}()
 
 	waitErr := cmd.Wait()
-	if progress != nil {
-		close(progress)
-	}
 	if waitErr != nil {
 		var exitErr *exec.ExitError
 		if errors.As(waitErr, &exitErr) {

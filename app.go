@@ -129,7 +129,7 @@ func (a *App) About() AboutInfo {
 		GitHub:  "SyntaxOrigin",
 		OrgURL:  repoURL,
 		RepoURL: repoURL,
-		Avatar:  "https://github.com/SyntaxOrigin.png?size=64",
+		Avatar:  "https://avatars.githubusercontent.com/u/238831403?v=4&size=64",
 		GoVer:   runtime.Version(),
 	}
 }

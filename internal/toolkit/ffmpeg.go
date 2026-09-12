@@ -48,6 +48,7 @@ func RunFFmpegWithProgress(ctx context.Context, args []string, progress chan<- f
 
 	fullArgs := append([]string{"-hide_banner", "-nostats", "-y", "-progress", "pipe:1"}, args...)
 	cmd := exec.CommandContext(ctx, bin, fullArgs...)
+	HideConsoleWindow(cmd)
 	cmd.Stderr = os.Stderr
 
 	stdout, err := cmd.StdoutPipe()
@@ -95,9 +96,6 @@ func RunFFmpegWithProgress(ctx context.Context, args []string, progress chan<- f
 	}
 
 	err = cmd.Wait()
-	if progress != nil && total > 0 {
-		close(progress)
-	}
 	if err != nil {
 		return fmt.Errorf("ffmpeg hatası: %w", err)
 	}
@@ -155,6 +153,7 @@ func FindBin(dir, name string) (string, bool) {
 func ToolVersion(bin string) string {
 	for _, flag := range []string{"--version", "-version"} {
 		cmd := exec.Command(bin, flag)
+		HideConsoleWindow(cmd)
 		out, err := cmd.Output()
 		if err != nil {
 			continue
