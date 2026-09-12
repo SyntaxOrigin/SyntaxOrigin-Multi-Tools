@@ -95,6 +95,7 @@ jobs:
           mkdir -p AppDir/usr/bin AppDir/usr/share/applications AppDir/usr/share/icons/hicolor/256x256/apps
           cp release/syntaxorigin-multitools-linux-amd64 AppDir/usr/bin/syntaxorigin-multitools
           cp build/appicon.png AppDir/usr/share/icons/hicolor/256x256/apps/syntaxorigin-multitools.png
+          cp build/appicon.png AppDir/syntaxorigin-multitools.png
           printf '%s\n' \
             '[Desktop Entry]' \
             'Type=Application' \
