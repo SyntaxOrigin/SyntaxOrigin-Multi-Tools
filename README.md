@@ -12,6 +12,12 @@ single click right on the Tools tab — no manual setup required.
 
 ---
 
+## Screenshot
+
+![SyntaxOrigin Multi Tools](screenshot.PNG)
+
+---
+
 ## Features
 
 - **Convert** video, audio, image and document files between formats.
