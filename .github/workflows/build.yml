@@ -104,7 +104,8 @@ jobs:
             'Exec=syntaxorigin-multitools' \
             'Icon=syntaxorigin-multitools' \
             'Terminal=false' \
-            'Categories=Utility;AudioVideo;Graphics;' > AppDir/usr/share/applications/syntaxorigin-multitools.desktop
+            'Categories=Utility;AudioVideo;Graphics;' > AppDir/syntaxorigin-multitools.desktop
+          cp AppDir/syntaxorigin-multitools.desktop AppDir/usr/share/applications/
           ln -s usr/bin/syntaxorigin-multitools AppDir/AppRun
           chmod +x AppDir/AppRun
           wget -q https://github.com/AppImage/appimagetool/releases/download/continuous/appimagetool-x86_64.AppImage -O appimagetool
