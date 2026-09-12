@@ -21,7 +21,7 @@ var assets embed.FS
 
 const (
 	appName    = "SyntaxOrigin Multi Tools"
-	appVersion = "1.0.0"
+	appVersion = "1.0.1"
 	repoURL    = "https://github.com/SyntaxOrigin"
 )
 
